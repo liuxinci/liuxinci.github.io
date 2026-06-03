@@ -1,0 +1,498 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>刘新慈 - 个人主页</title>
+<style>
+/* ===== Reset & Base ===== */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans SC",sans-serif;
+  background:#FDF8F4;color:#4A4A4A;line-height:1.7
+}
+a{color:#C4956A;text-decoration:none;transition:color .3s}
+a:hover{color:#B07D4A}
+img{max-width:100%;display:block}
+::selection{background:#D4A574;color:#fff}
+
+/* ===== Navigation ===== */
+.navbar{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(245,230,211,.95);backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(196,149,106,.15);
+  padding:0 24px;height:56px;
+  display:flex;align-items:center;justify-content:space-between
+}
+.navbar .logo{font-size:1.1rem;font-weight:700;color:#4A4A4A;white-space:nowrap}
+.navbar .logo span{color:#C4956A}
+.nav-links{display:flex;list-style:none;gap:4px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.nav-links a{
+  display:block;padding:6px 14px;border-radius:6px;
+  font-size:.875rem;color:#5A5A5A;white-space:nowrap;transition:all .3s
+}
+.nav-links a:hover{background:rgba(196,149,106,.15);color:#C4956A}
+.menu-toggle{display:none;background:none;border:none;font-size:1.4rem;color:#4A4A4A;cursor:pointer;padding:4px}
+
+/* ===== Layout ===== */
+.container{
+  max-width:1100px;margin:72px auto 0;padding:20px 24px 40px;
+  display:grid;grid-template-columns:280px 1fr;gap:40px;min-height:calc(100vh - 56px)
+}
+
+/* ===== Sidebar ===== */
+.sidebar{
+  position:sticky;top:80px;align-self:start;margin-left:-10px
+}
+.sidebar .avatar{
+  width:130px;height:130px;border-radius:50%;object-fit:cover;
+  border:4px solid #F5E6D3;margin-bottom:16px;background:#F0E0D0
+}
+.sidebar h1{font-size:1.35rem;color:#3A3A3A;margin-bottom:4px}
+.sidebar .subtitle{font-size:.875rem;color:#888;margin-bottom:16px;line-height:1.5}
+.sidebar .divider{height:1px;background:linear-gradient(to right,#E8D5C0,transparent);margin:12px 0}
+.sidebar .info-list{list-style:none;font-size:.875rem}
+.sidebar .info-list li{display:flex;align-items:center;gap:8px;margin-bottom:8px;color:#666}
+.sidebar .info-list li i{width:18px;text-align:center;color:#C4956A}
+.sidebar .social-links{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.social-links a{
+  display:flex;align-items:center;justify-content:center;
+  width:36px;height:36px;border-radius:50%;
+  background:#F5E6D3;color:#C4956A;font-size:.9rem;
+  transition:all .3s
+}
+.social-links a:hover{background:#C4956A;color:#fff;transform:translateY(-2px)}
+
+/* ===== Main Content ===== */
+.main-content{min-width:0}
+
+/* ===== Section ===== */
+.section{
+  margin-bottom:48px;opacity:0;transform:translateY(20px);transition:all .6s ease
+}
+.section.visible{opacity:1;transform:translateY(0)}
+.section-title{
+  font-size:1.3rem;font-weight:700;color:#3A3A3A;
+  padding-bottom:10px;margin-bottom:24px;
+  border-bottom:2px solid #F5E6D3;display:flex;align-items:center;gap:10px
+}
+.section-title i{color:#C4956A}
+
+/* ===== About ===== */
+.about-text{font-size:.95rem;color:#555;line-height:1.9}
+
+/* ===== Timeline ===== */
+.timeline{position:relative;padding-left:24px}
+.timeline::before{
+  content:'';position:absolute;left:6px;top:4px;bottom:4px;
+  width:2px;background:linear-gradient(to bottom,#E8D5C0,#D4A574)
+}
+.timeline-item{position:relative;margin-bottom:24px;padding-left:20px}
+.timeline-item::before{
+  content:'';position:absolute;left:-20px;top:6px;
+  width:10px;height:10px;border-radius:50%;
+  background:#D4A574;border:2px solid #FDF8F4;box-shadow:0 0 0 2px #D4A574
+}
+.timeline-item h3{font-size:1rem;color:#3A3A3A;margin-bottom:2px}
+.timeline-item .meta{font-size:.8rem;color:#999;margin-bottom:4px}
+.timeline-item p{font-size:.875rem;color:#666}
+
+/* ===== Project Cards ===== */
+.project-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.project-card{
+  background:#FAF0E6;border-radius:12px;padding:20px;border:1px solid rgba(196,149,106,.1);
+  transition:all .3s ease;cursor:default
+}
+.project-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(196,149,106,.15)}
+.project-card h3{font-size:1rem;color:#3A3A3A;margin-bottom:6px}
+.project-card .tag{
+  display:inline-block;font-size:.75rem;padding:2px 10px;border-radius:20px;
+  background:rgba(212,165,116,.2);color:#C4956A;margin-bottom:10px
+}
+.project-card p{font-size:.85rem;color:#666;line-height:1.6}
+.project-card .card-video{
+  position:relative;width:100%;aspect-ratio:16/9;border-radius:8px;overflow:hidden;
+  background:#F0E0D0;cursor:pointer;margin-top:12px
+}
+.project-card .card-video video{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.project-card .card-video .play-btn{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(212,165,116,.9);color:#fff;border:none;
+  font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all .3s;padding-left:2px
+}
+.project-card .card-video:hover .play-btn{background:#C4956A;transform:translate(-50%,-50%) scale(1.08)}
+
+.research-grid{display:grid;grid-template-columns:1fr;gap:20px}
+
+/* ===== Video Gallery (compact) ===== */
+.video-group{margin-top:20px}
+.video-group-title{
+  font-size:.95rem;font-weight:600;color:#3A3A3A;margin-bottom:12px;
+  padding-left:4px;border-left:3px solid #D4A574;padding-left:10px
+}
+.video-thumbs{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:12px
+}
+.video-thumbs.thumbs-5{grid-template-columns:repeat(5,1fr)}
+.thumb-item{display:flex;flex-direction:column;gap:6px}
+.video-thumb{
+  position:relative;border-radius:8px;overflow:hidden;
+  background:#F0E0D0;cursor:pointer;aspect-ratio:16/9;
+  transition:all .3s ease
+}
+.video-thumb:hover{transform:translateY(-3px);box-shadow:0 6px 16px rgba(196,149,106,.2)}
+.video-thumb video,.video-thumb img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.video-thumb .play-overlay{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.08);transition:all .3s
+}
+.video-thumb:hover .play-overlay{background:rgba(0,0,0,.15)}
+.video-thumb .play-overlay .play-arrow{
+  width:40px;height:40px;border-radius:50%;
+  background:rgba(255,255,255,.7);color:#4A4A4A;border:none;
+  font-size:1rem;display:flex;align-items:center;justify-content:center;
+  padding-left:3px;transition:all .3s;backdrop-filter:blur(2px)
+}
+.video-thumb:hover .play-overlay .play-arrow{background:rgba(255,255,255,.9);transform:scale(1.08)}
+.video-thumb.is-image .play-overlay .play-arrow{font-size:.85rem;background:rgba(255,255,255,.5)}
+.thumb-label{
+  font-size:.75rem;color:#888;text-align:center;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap;padding:0 2px
+}
+
+/* ===== Skills ===== */
+.skills-wrap{display:flex;flex-wrap:wrap;gap:10px}
+.skill-tag{
+  display:inline-block;padding:6px 18px;border-radius:20px;
+  font-size:.85rem;background:#FAF0E6;color:#5A5A5A;border:1px solid rgba(196,149,106,.15);
+  transition:all .3s
+}
+.skill-tag:hover{background:#D4A574;color:#fff;border-color:#D4A574;transform:translateY(-2px)}
+
+/* ===== Honors ===== */
+.honor-list{list-style:none}
+.honor-list li{
+  display:flex;align-items:baseline;gap:10px;padding:10px 0;
+  border-bottom:1px dashed #F0E0D0;font-size:.9rem
+}
+.honor-list li:last-child{border-bottom:none}
+.honor-list .year{
+  flex-shrink:0;font-size:.8rem;font-weight:600;color:#C4956A;min-width:60px
+}
+
+/* ===== Modal ===== */
+.modal-overlay{
+  display:none;position:fixed;inset:0;z-index:200;
+  background:rgba(0,0,0,.8);backdrop-filter:blur(4px);
+  align-items:center;justify-content:center;padding:20px
+}
+.modal-overlay.active{display:flex}
+.modal-content{
+  position:relative;max-width:800px;width:100%;border-radius:12px;overflow:hidden
+}
+.modal-content video{width:100%;display:block}
+.modal-close{
+  position:absolute;top:12px;right:12px;z-index:10;
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(0,0,0,.5);color:#fff;border:none;
+  font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:background .3s
+}
+.modal-close:hover{background:rgba(0,0,0,.8)}
+
+/* ===== Footer ===== */
+.footer{
+  text-align:center;padding:24px;font-size:.8rem;color:#999;border-top:1px solid #F0E0D0
+}
+
+/* ===== Responsive ===== */
+@media(max-width:860px){
+  .container{grid-template-columns:1fr;gap:32px}
+  .sidebar{
+    position:static;text-align:center;
+    display:flex;flex-direction:column;align-items:center
+  }
+  .sidebar .avatar{width:100px;height:100px}
+  .sidebar .social-links{justify-content:center}
+  .sidebar .info-list li{justify-content:center}
+}
+@media(max-width:600px){
+  .navbar{padding:0 16px}
+  .nav-links{display:none;position:absolute;top:56px;left:0;right:0;
+    background:rgba(245,230,211,.98);flex-direction:column;padding:8px 16px 16px;
+    border-bottom:1px solid rgba(196,149,106,.15)}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:10px 14px}
+  .menu-toggle{display:block}
+  .project-grid{grid-template-columns:1fr}
+  .container{padding:16px;margin-top:64px}
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#FDF8F4}
+::-webkit-scrollbar-thumb{background:#E8D5C0;border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:#D4A574}
+</style>
+</head>
+<body>
+
+<!-- ===== Navigation ===== -->
+<nav class="navbar">
+  <div class="logo"><span>✦</span> 刘新慈</div>
+  <button class="menu-toggle" id="menuToggle" aria-label="菜单">☰</button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">关于</a></li>
+    <li><a href="#education">教育</a></li>
+    <li><a href="#research">科研</a></li>
+    <li><a href="#projects">项目</a></li>
+    <li><a href="#skills">技能</a></li>
+    <li><a href="#honors">奖项</a></li>
+  </ul>
+</nav>
+
+<!-- ===== Container ===== -->
+<div class="container">
+
+  <!-- ===== Sidebar ===== -->
+  <aside class="sidebar">
+    <div class="avatar" style="background:linear-gradient(135deg,#F5E6D3,#E8D5C0);display:flex;align-items:center;justify-content:center;font-size:2.8rem;color:#C4956A">
+      ✦
+    </div>
+    <h1>刘新慈</h1>
+    <div class="subtitle">智能建造 · 本科 · 中共预备党员</div>
+    <div class="divider"></div>
+    <ul class="info-list">
+      <li><i>📍</i> 华东交通大学</li>
+      <li><i>🎓</i> 智能建造 · GPA 4.20/5.0</li>
+      <li><i>📧</i> xinci_angel@163.com</li>
+      <li><i>📞</i> 18738741679</li>
+    </ul>
+    <div class="social-links">
+      <a href="#" title="GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58 0-.28-.01-1.04-.02-2.05-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.47 5.93.43.37.81 1.1.81 2.22 0 1.6-.01 2.89-.01 3.28 0 .32.22.7.83.58C20.56 21.8 24 17.3 24 12 24 5.37 18.63 0 12 0z"/></svg></a>
+      <a href="#" title="B站"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.813 4.653h.854c1.51.054 2.769.578 3.773 1.574 1.004.995 1.524 2.249 1.562 3.76v8.4c-.038 1.51-.558 2.765-1.562 3.761-1.004.996-2.263 1.52-3.773 1.574H5.333c-1.51-.054-2.769-.578-3.773-1.574C.556 21.152.036 19.898 0 18.387v-8.4c.036-1.511.556-2.765 1.562-3.76 1.004-.996 2.263-1.52 3.773-1.575h.774l-1.174-1.12a1.234 1.234 0 0 1-.373-.906c0-.356.124-.658.373-.907.249-.248.551-.377.907-.377.355 0 .657.129.906.377L7.24 4.653h9.52l1.147-1.12a1.26 1.26 0 0 1 .906-.377c.356 0 .658.129.907.377.249.249.373.551.373.907 0 .355-.124.657-.373.906zM5.333 7.42c-.746.027-1.373.276-1.88.747-.507.47-.76 1.1-.76 1.887v8.293c0 .787.253 1.416.76 1.887.507.47 1.134.72 1.88.747h13.334c.746-.027 1.373-.276 1.88-.747.507-.47.76-1.1.76-1.887V10.05c0-.787-.253-1.416-.76-1.887-.507-.47-1.134-.72-1.88-.747zM8.267 12.36c.32 0 .596.107.827.32.23.213.347.48.347.8v2.373c0 .32-.116.587-.347.8-.23.213-.507.32-.827.32-.32 0-.596-.107-.827-.32-.23-.213-.347-.48-.347-.8V13.48c0-.32.116-.587.347-.8.23-.213.507-.32.827-.32zm7.466 0c.32 0 .596.107.827.32.23.213.347.48.347.8v2.373c0 .32-.116.587-.347.8-.23.213-.507.32-.827.32-.32 0-.596-.107-.827-.32-.23-.213-.347-.48-.347-.8V13.48c0-.32.116-.587.347-.8.23-.213.507-.32.827-.32z"/></svg></a>
+      <a href="#" title="邮箱"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+    </div>
+  </aside>
+
+  <!-- ===== Main ===== -->
+  <main class="main-content">
+
+    <!-- About -->
+    <section id="about" class="section">
+      <h2 class="section-title"><i>👤</i> 关于我</h2>
+      <div class="about-text">
+        <p>你好！我是刘新慈，华东交通大学智能建造专业本科生，中共预备党员，学习成绩排名 1/42。我热衷于将人工智能与计算机技术应用于土木工程领域，探索智能建造的前沿方向。通过不断地科研与实践，我希望为工程建设行业的数字化与智能化转型贡献自己的力量。</p>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="section">
+      <h2 class="section-title"><i>📚</i> 教育经历</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h3>智能建造 · 本科</h3>
+          <div class="meta">2023.09 — 2026.06 | 华东交通大学 | GPA 4.20/5.0 | 排名 1/42</div>
+          <p>主修课程：高等数学Ⅰ(95) 线性代数(98) 数据结构与算法(96) 运筹学(92) 概率论与数理统计(93) 大学物理Ⅰ(93) 程序设计基础-Python(99) 计算机图形学(97) 计算机视觉(99)</p>
+          <p style="margin-top:6px">英语能力：CET-6 (550) · CET-4 (517)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Research -->
+    <section id="research" class="section">
+      <h2 class="section-title"><i>🔬</i> 科研经历</h2>
+      <div class="research-grid">
+        <div class="project-card">
+          <span class="tag">进行中 · 国家级大创 · 第二负责人</span>
+          <h3>基于隐式辐射场 NeRF 的三维岩土工程场景快速重建技术</h3>
+          <p>项目立项于国家级创新创业训练计划（2024.06-至今），项目基于 NeRF 三维重建技术并结合智能建造；前期探索 NeRF 时空域增强、采样策略优化技术，提升岩土场景重建流畅度与细节精度；研究中发现 3D Gaussian Splatting 技术渲染效率更高、实时性更强，及时调整技术路线转向该技术研究，深入探究 3D Gaussian Splatting 点云稀疏化、场景重建核心算法；对比分析两个技术优劣，优化 3D Gaussian Splatting 数据适配与渲染策略。已受理国家发明专利一项。</p>
+        </div>
+
+        <div class="video-group">
+          <div class="video-group-title">Physgaussian</div>
+          <div class="video-thumbs">
+            <div class="thumb-item"><div class="video-thumb" data-src="media/physgaussian/sofa.mp4"><video src="media/physgaussian/sofa.mp4#t=0.5" preload="metadata" muted playsinline></video><div class="play-overlay"><span class="play-arrow">▶</span></div></div><div class="thumb-label">sofa</div></div>
+            <div class="thumb-item"><div class="video-thumb" data-src="media/physgaussian/sofa_softvib.mp4"><video src="media/physgaussian/sofa_softvib.mp4#t=0.5" preload="metadata" muted playsinline></video><div class="play-overlay"><span class="play-arrow">▶</span></div></div><div class="thumb-label">sofa_softvib</div></div>
+            <div class="thumb-item"><div class="video-thumb" data-src="media/physgaussian/sofa_strongvib.mp4"><video src="media/physgaussian/sofa_strongvib.mp4#t=0.5" preload="metadata" muted playsinline></video><div class="play-overlay"><span class="play-arrow">▶</span></div></div><div class="thumb-label">sofa_strongvib</div></div>
+            <div class="thumb-item"><div class="video-thumb" data-src="media/physgaussian/vasedeck.mp4"><video src="media/physgaussian/vasedeck.mp4#t=0.5" preload="metadata" muted playsinline></video><div class="play-overlay"><span class="play-arrow">▶</span></div></div><div class="thumb-label">vasedeck</div></div>
+          </div>
+        </div>
+
+                  <div class="video-group">
+              <div class="video-group-title">sketch-generative</div>
+              <div class="video-thumbs">
+            <div class="thumb-item"><div class="video-thumb" data-src="media/sketch-generative/bike.mp4"><video src="media/sketch-generative/bike.mp4#t=0.5" preload="metadata" muted playsinline></video><div class="play-overlay"><span class="play-arrow">▶</span></div></div><div class="thumb-label">bike</div></div>
+            <div class="thumb-item"><div class="video-thumb" data-src="media/sketch-generative/dolphin.mp4"><video src="media/sketch-generative/dolphin.mp4#t=0.5" preload="metadata" muted playsinline></video><div class="play-overlay"><span class="play-arrow">▶</span></div></div><div class="thumb-label">dolphin</div></div>
+            <div class="thumb-item"><div class="video-thumb" data-src="media/sketch-generative/dolphin0.mp4"><video src="media/sketch-generative/dolphin0.mp4#t=0.5" preload="metadata" muted playsinline></video><div class="play-overlay"><span class="play-arrow">▶</span></div></div><div class="thumb-label">dolphin0</div></div>
+            <div class="thumb-item"><div class="video-thumb" data-src="media/sketch-generative/sking.mp4"><video src="media/sketch-generative/sking.mp4#t=0.5" preload="metadata" muted playsinline></video><div class="play-overlay"><span class="play-arrow">▶</span></div></div><div class="thumb-label">sking</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section">
+      <h2 class="section-title"><i>💼</i> 项目经历</h2>
+      <div class="project-grid">
+        <div class="project-card">
+          <span class="tag">进行中 · 服务外包大赛 · 项目负责人</span>
+          <h3>面向高校学生的多模态模拟面试评测智能体</h3>
+          <p>项目参加第十七届中国大学生服务外包创新创业大赛（锐捷网络出题，2025.05-2026.04）。自建岗位专属题库与知识图谱，依托 SparkLLM 大模型构建 RAG 实现个性化出题与智能追问；利用多模态数据构建情绪识别与多特征融合注意力感知算法，实现面试多维度量化评估，并实现简历生成-评估-发送全流程自动化。</p>
+          <div class="card-video" data-src="media/video2.mp4">
+            <video preload="metadata" muted playsinline></video>
+            <button class="play-btn">▶</button>
+          </div>
+        </div>
+        <div class="project-card">
+          <span class="tag">已结束 · 中美青年创客大赛 · 项目负责人</span>
+          <h3>基于扩散模型与注意力机制的级联眼部疾病智能诊断系统</h3>
+          <p>项目于 2024.12-2025.04 完成。采用 Diffusion Model 生成高质量病灶图像，UNet 分割眼底血管，构建 ResNet50-集成模型两阶段级联架构实现七分类识别，加入 SE 注意力与 Spatial 注意力优化。获中美青年创客大赛国家三等奖，授权一项软件著作权。</p>
+          <div class="card-video" data-src="media/video3.mp4">
+            <video preload="metadata" muted playsinline></video>
+            <button class="play-btn">▶</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="section">
+      <h2 class="section-title"><i>🛠</i> 个人技能</h2>
+      <div class="skills-wrap">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Taichi</span>
+        <span class="skill-tag">C++</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">PyTorch</span>
+        <span class="skill-tag">Revit</span>
+        <span class="skill-tag">AutoCAD</span>
+        <span class="skill-tag">PyCharm</span>
+        <span class="skill-tag">VS Code</span>
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">计算机二级(Python)</span>
+        <span class="skill-tag">CET-6</span>
+      </div>
+    </section>
+
+    <!-- Honors -->
+    <section id="honors" class="section">
+      <h2 class="section-title"><i>🏆</i> 竞赛奖项</h2>
+      <ul class="honor-list">
+        <li><span class="year">2025.12</span> iCAN 大学生创新创业大赛 AI 挑战赛 全国二等奖</li>
+        <li><span class="year">2025.10</span> 第十九届"挑战杯"揭榜挂帅擂台赛 国家二等奖</li>
+        <li><span class="year">2025.09</span> 全国大学生数学建模竞赛 省级一等奖</li>
+        <li><span class="year">2025.08</span> 中国大学生计算机设计大赛 全国二等奖</li>
+        <li><span class="year">2025.07</span> 中美青年创客大赛 总决赛三等奖</li>
+        <li><span class="year">2025.05</span> 全国大学生英语竞赛 三等奖</li>
+        <li><span class="year">2025.01</span> APMCM 亚太区大学生数学建模竞赛 三等奖</li>
+        <li><span class="year">2024.12</span> 全国大学生数学竞赛 省级三等奖</li>
+        <li><span class="year">2024.08</span> 国际高校数学建模竞赛 M奖(优异奖)</li>
+      </ul>
+    </section>
+
+    <!-- School Honors -->
+    <section id="school-honors" class="section">
+      <h2 class="section-title"><i>🎖</i> 校级荣誉</h2>
+      <ul class="honor-list">
+        <li><span class="year">2026.05</span> 华东交通大学泰豪之星"十佳大学生"提名奖</li>
+        <li><span class="year">2025.12</span> 华东交通大学优秀学生"一等奖学金"</li>
+        <li><span class="year">2025.12</span> 华东交通大学"三好学生"</li>
+      </ul>
+    </section>
+
+    <!-- IP -->
+    <section id="ip" class="section">
+      <h2 class="section-title"><i>📄</i> 知识产权</h2>
+      <ul class="honor-list">
+        <li><span class="year">2025.11</span> 授权软件著作权 — 基于 YOLO11 的无人机公路巡检系统</li>
+        <li><span class="year">2025.07</span> 受理国家发明专利 — 一种基坑监测方法及系统</li>
+        <li><span class="year">2025.07</span> 授权软件著作权 — 基于扩散模型与集成学习的注意力级联眼科智能诊断系统</li>
+        <li><span class="year">2025.07</span> 授权软件著作权 — 基于梯度提升的随机森林降维与预测欺诈系统</li>
+        <li><span class="year">2025.02</span> 授权软件著作权 — 基坑风险智能评估预警系统</li>
+      </ul>
+    </section>
+
+  </main>
+</div>
+
+<!-- ===== Footer ===== -->
+<div class="footer">
+  &copy; 2026 刘新慈. All rights reserved.
+</div>
+
+<!-- ===== Video Modal ===== -->
+<div class="modal-overlay" id="videoModal">
+  <div class="modal-content">
+    <button class="modal-close" id="modalClose">✕</button>
+    <video id="modalVideo" controls preload="metadata" style="display:none"></video>
+    <img id="modalImage" style="display:none;width:100%">
+  </div>
+</div>
+
+<script>
+// ===== Mobile Menu Toggle =====
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+menuToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('open');
+});
+// Close menu on link click
+navLinks.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => navLinks.classList.remove('open'));
+});
+
+// ===== Scroll Reveal =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.section').forEach(s => observer.observe(s));
+
+// ===== Video Modal =====
+const modal = document.getElementById('videoModal');
+const modalVideo = document.getElementById('modalVideo');
+const modalImage = document.getElementById('modalImage');
+const modalClose = document.getElementById('modalClose');
+const videoItems = document.querySelectorAll('.card-video, .video-thumb');
+
+videoItems.forEach(item => {
+  item.addEventListener('click', () => {
+    const src = item.dataset.src;
+    const isImage = item.classList.contains('is-image');
+    modalVideo.style.display = isImage ? 'none' : 'block';
+    modalImage.style.display = isImage ? 'block' : 'none';
+    if (isImage) {
+      modalImage.src = src;
+    } else {
+      modalVideo.src = src;
+      modalVideo.play().catch(() => {});
+    }
+    modal.classList.add('active');
+  });
+});
+
+function closeModal() {
+  modal.classList.remove('active');
+  modalVideo.pause();
+  modalVideo.src = '';
+  modalImage.src = '';
+}
+
+modalClose.addEventListener('click', closeModal);
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) closeModal();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeModal();
+});
+</script>
+
+</body>
+</html>
