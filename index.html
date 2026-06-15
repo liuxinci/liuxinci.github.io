@@ -3,496 +3,541 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>刘新慈 - 个人主页</title>
+<title>刘新慈 / Xinci Liu</title>
 <style>
-/* ===== Reset & Base ===== */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;font-size:16px}
 body{
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans SC",sans-serif;
-  background:#FDF8F4;color:#4A4A4A;line-height:1.7
+  background:#f7f7f7;color:#333;line-height:1.75
 }
-a{color:#C4956A;text-decoration:none;transition:color .3s}
-a:hover{color:#B07D4A}
+a{color:#1772d0;text-decoration:none;transition:color .2s}
+a:hover{color:#0d5aa7;text-decoration:underline}
 img{max-width:100%;display:block}
-::selection{background:#D4A574;color:#fff}
+::selection{background:#cce4ff;color:#003d7a}
+.me{font-weight:700;color:#111}
 
-/* ===== Navigation ===== */
+/* ===== Nav (zqyuan) ===== */
 .navbar{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  background:rgba(245,230,211,.95);backdrop-filter:blur(10px);
-  border-bottom:1px solid rgba(196,149,106,.15);
-  padding:0 24px;height:56px;
-  display:flex;align-items:center;justify-content:space-between
-}
-.navbar .logo{font-size:1.1rem;font-weight:700;color:#4A4A4A;white-space:nowrap}
-.navbar .logo span{color:#C4956A}
-.nav-links{display:flex;list-style:none;gap:4px;overflow-x:auto;-webkit-overflow-scrolling:touch}
-.nav-links a{
-  display:block;padding:6px 14px;border-radius:6px;
-  font-size:.875rem;color:#5A5A5A;white-space:nowrap;transition:all .3s
-}
-.nav-links a:hover{background:rgba(196,149,106,.15);color:#C4956A}
-.menu-toggle{display:none;background:none;border:none;font-size:1.4rem;color:#4A4A4A;cursor:pointer;padding:4px}
-
-/* ===== Layout ===== */
-.container{
-  max-width:1100px;margin:72px auto 0;padding:20px 24px 40px;
-  display:grid;grid-template-columns:280px 1fr;gap:40px;min-height:calc(100vh - 56px)
-}
-
-/* ===== Sidebar ===== */
-.sidebar{
-  position:sticky;top:80px;align-self:start;margin-left:-10px
-}
-.sidebar .avatar{
-  width:130px;height:130px;border-radius:50%;object-fit:cover;
-  border:4px solid #F5E6D3;margin-bottom:16px;background:#F0E0D0
-}
-.sidebar h1{font-size:1.35rem;color:#3A3A3A;margin-bottom:4px}
-.sidebar .subtitle{font-size:.875rem;color:#888;margin-bottom:16px;line-height:1.5}
-.sidebar .divider{height:1px;background:linear-gradient(to right,#E8D5C0,transparent);margin:12px 0}
-.sidebar .info-list{list-style:none;font-size:.875rem}
-.sidebar .info-list li{display:flex;align-items:center;gap:8px;margin-bottom:8px;color:#666}
-.sidebar .info-list li i{width:18px;text-align:center;color:#C4956A}
-.sidebar .social-links{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
-.social-links a{
+  position:fixed;top:0;left:0;right:0;z-index:100;height:48px;
   display:flex;align-items:center;justify-content:center;
-  width:36px;height:36px;border-radius:50%;
-  background:#F5E6D3;color:#C4956A;font-size:.9rem;
-  transition:all .3s
+  background:rgba(255,255,255,.97);backdrop-filter:blur(8px);
+  border-bottom:1px solid #e0e0e0
 }
-.social-links a:hover{background:#C4956A;color:#fff;transform:translateY(-2px)}
-
-/* ===== Main Content ===== */
-.main-content{min-width:0}
-
-/* ===== Section ===== */
-.section{
-  margin-bottom:48px;opacity:0;transform:translateY(20px);transition:all .6s ease
+.nav-links{display:flex;list-style:none;gap:0;overflow-x:auto;padding:0 16px}
+.nav-links a{
+  display:block;padding:14px 16px;font-size:.875rem;font-weight:600;
+  color:#555;white-space:nowrap;transition:color .2s;border-bottom:2px solid transparent
 }
+.nav-links a:hover{color:#1772d0;border-bottom-color:#1772d0;text-decoration:none}
+.menu-toggle{display:none;background:none;border:none;font-size:1.3rem;color:#333;cursor:pointer;position:absolute;right:16px;top:10px}
+
+/* ===== School banner — full image ===== */
+.school-banner{
+  margin-top:48px;width:100%;background:#e8edf3;
+  display:flex;justify-content:center
+}
+.school-banner img{width:100%;max-width:1200px;height:auto;display:block}
+
+/* ===== Profile (cen-jun style) ===== */
+.profile-wrap{
+  max-width:900px;margin:-36px auto 0;padding:0 20px 28px;position:relative;z-index:2
+}
+.profile-card{
+  display:flex;align-items:center;gap:24px;
+  background:#fff;border:1px solid #e8e8e8;border-radius:6px;
+  padding:22px 28px;box-shadow:0 2px 12px rgba(0,0,0,.07);
+  animation:fadeUp .6s ease both
+}
+.profile-avatar-wrap{flex-shrink:0}
+.profile-avatar{
+  width:130px;height:130px;border-radius:6px;object-fit:cover;
+  border:3px solid #eee;background:#f5f5f5
+}
+.profile-info h1{font-size:1.5rem;font-weight:700;color:#111;margin-bottom:2px}
+.profile-info .affiliation{font-size:.95rem;color:#555;font-weight:500;margin-bottom:6px}
+.profile-info .contact{font-size:.85rem;color:#777;line-height:1.6}
+.profile-info .contact a{color:#1772d0}
+
+.bio-box{
+  max-width:900px;margin:20px auto 0;padding:0 20px 32px;
+  animation:fadeUp .6s .15s ease both
+}
+.bio-box p{font-size:.92rem;color:#444;line-height:1.85}
+
+/* ===== Main layout ===== */
+.page-wrap{max-width:900px;margin:0 auto;padding:0 20px 60px}
+
+.section{margin-bottom:44px;opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
 .section.visible{opacity:1;transform:translateY(0)}
 .section-title{
-  font-size:1.3rem;font-weight:700;color:#3A3A3A;
-  padding-bottom:10px;margin-bottom:24px;
-  border-bottom:2px solid #F5E6D3;display:flex;align-items:center;gap:10px
-}
-.section-title i{color:#C4956A}
-
-/* ===== About ===== */
-.about-text{font-size:.95rem;color:#555;line-height:1.9}
-
-/* ===== Timeline ===== */
-.timeline{position:relative;padding-left:24px}
-.timeline::before{
-  content:'';position:absolute;left:6px;top:4px;bottom:4px;
-  width:2px;background:linear-gradient(to bottom,#E8D5C0,#D4A574)
-}
-.timeline-item{position:relative;margin-bottom:24px;padding-left:20px}
-.timeline-item::before{
-  content:'';position:absolute;left:-20px;top:6px;
-  width:10px;height:10px;border-radius:50%;
-  background:#D4A574;border:2px solid #FDF8F4;box-shadow:0 0 0 2px #D4A574
-}
-.timeline-item h3{font-size:1rem;color:#3A3A3A;margin-bottom:2px}
-.timeline-item .meta{font-size:.8rem;color:#999;margin-bottom:4px}
-.timeline-item p{font-size:.875rem;color:#666}
-
-/* ===== Project Cards ===== */
-.project-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
-.project-card{
-  background:#FAF0E6;border-radius:12px;padding:20px;border:1px solid rgba(196,149,106,.1);
-  transition:all .3s ease;cursor:default
-}
-.project-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(196,149,106,.15)}
-.project-card h3{font-size:1rem;color:#3A3A3A;margin-bottom:6px}
-.project-card .tag{
-  display:inline-block;font-size:.75rem;padding:2px 10px;border-radius:20px;
-  background:rgba(212,165,116,.2);color:#C4956A;margin-bottom:10px
-}
-.project-card p{font-size:.85rem;color:#666;line-height:1.6}
-.project-card .card-video{
-  position:relative;width:100%;aspect-ratio:16/9;border-radius:8px;overflow:hidden;
-  background:#F0E0D0;cursor:pointer;margin-top:12px
-}
-.project-card .card-video video{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
-.project-card .card-video .play-btn{
-  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:44px;height:44px;border-radius:50%;
-  background:rgba(212,165,116,.9);color:#fff;border:none;
-  font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;
-  transition:all .3s;padding-left:2px
-}
-.project-card .card-video:hover .play-btn{background:#C4956A;transform:translate(-50%,-50%) scale(1.08)}
-
-.research-grid{display:grid;grid-template-columns:1fr;gap:20px}
-
-/* ===== Video Gallery (compact) ===== */
-.video-group{margin-top:20px}
-.video-group-title{
-  font-size:.95rem;font-weight:600;color:#3A3A3A;margin-bottom:12px;
-  padding-left:4px;border-left:3px solid #D4A574;padding-left:10px
-}
-.video-thumbs{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:12px
-}
-.video-thumbs.thumbs-5{grid-template-columns:repeat(5,1fr)}
-.thumb-item{display:flex;flex-direction:column;gap:6px}
-.video-thumb{
-  position:relative;border-radius:8px;overflow:hidden;
-  background:#F0E0D0;cursor:pointer;aspect-ratio:16/9;
-  transition:all .3s ease
-}
-.video-thumb:hover{transform:translateY(-3px);box-shadow:0 6px 16px rgba(196,149,106,.2)}
-.video-thumb video,.video-thumb img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
-.video-thumb .play-overlay{
-  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  background:rgba(0,0,0,.08);transition:all .3s
-}
-.video-thumb:hover .play-overlay{background:rgba(0,0,0,.15)}
-.video-thumb .play-overlay .play-arrow{
-  width:40px;height:40px;border-radius:50%;
-  background:rgba(255,255,255,.7);color:#4A4A4A;border:none;
-  font-size:1rem;display:flex;align-items:center;justify-content:center;
-  padding-left:3px;transition:all .3s;backdrop-filter:blur(2px)
-}
-.video-thumb:hover .play-overlay .play-arrow{background:rgba(255,255,255,.9);transform:scale(1.08)}
-.video-thumb.is-image .play-overlay .play-arrow{font-size:.85rem;background:rgba(255,255,255,.5)}
-.thumb-label{
-  font-size:.75rem;color:#888;text-align:center;overflow:hidden;
-  text-overflow:ellipsis;white-space:nowrap;padding:0 2px
+  font-size:1.25rem;font-weight:700;color:#111;
+  margin-bottom:18px;padding-bottom:6px;border-bottom:1px solid #ddd
 }
 
-/* ===== Skills ===== */
-.skills-wrap{display:flex;flex-wrap:wrap;gap:10px}
-.skill-tag{
-  display:inline-block;padding:6px 18px;border-radius:20px;
-  font-size:.85rem;background:#FAF0E6;color:#5A5A5A;border:1px solid rgba(196,149,106,.15);
-  transition:all .3s
+/* ===== Education ===== */
+.edu-block{margin-bottom:14px}
+.edu-block .school{font-weight:700;color:#111;font-size:.92rem}
+.edu-block .detail{font-size:.84rem;color:#666;margin-top:2px;line-height:1.65}
+
+/* ===== Publications (zqyuan) ===== */
+.pub-list{display:flex;flex-direction:column;gap:0}
+.pub-item{
+  display:flex;gap:18px;padding:18px 4px;
+  border-bottom:1px solid #e8e8e8;
+  transition:background .25s ease,transform .25s ease
 }
-.skill-tag:hover{background:#D4A574;color:#fff;border-color:#D4A574;transform:translateY(-2px)}
+.pub-item:last-child{border-bottom:none}
+.pub-item:hover{background:#fff;transform:translateX(3px)}
+.pub-thumb{
+  flex-shrink:0;width:160px;border-radius:4px;overflow:hidden;
+  background:#eee;cursor:pointer;aspect-ratio:16/10;align-self:flex-start;
+  transition:box-shadow .25s ease
+}
+.pub-thumb:hover{box-shadow:0 4px 14px rgba(0,0,0,.12)}
+.pub-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .35s ease}
+.pub-thumb:hover img{transform:scale(1.04)}
+.pub-body{flex:1;min-width:0}
+.pub-body h3{font-size:.95rem;font-weight:700;color:#111;margin-bottom:3px;line-height:1.45}
+.pub-body h3 a{color:#111}
+.pub-body h3 a:hover{color:#1772d0;text-decoration:none}
+.pub-meta{font-size:.78rem;color:#888;margin-bottom:5px}
+.pub-authors{font-size:.8rem;color:#666;margin-bottom:5px}
+.pub-venue{
+  display:inline-block;font-size:.72rem;font-weight:600;
+  padding:1px 8px;border-radius:3px;background:#e8f0fe;color:#1a56db;
+  margin-bottom:6px;margin-right:4px
+}
+.pub-venue.award{background:#fff3cd;color:#856404}
+.pub-tldr{font-size:.84rem;color:#555;line-height:1.6}
+.pub-tldr em{font-style:normal;color:#888}
+.pub-links{margin-top:7px}
+.pub-links button{
+  font-size:.76rem;padding:2px 10px;border-radius:3px;
+  border:1px solid #ccc;background:#fff;color:#555;
+  cursor:pointer;font-family:inherit;transition:all .2s
+}
+.pub-links button:hover{background:#f0f0f0;border-color:#999}
+
+/* ===== Research videos ===== */
+.research-videos{margin-top:14px}
+.research-videos h4{font-size:.82rem;font-weight:600;color:#777;margin:12px 0 7px;text-transform:uppercase;letter-spacing:.03em}
+.video-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px}
+.video-grid video{width:100%;border-radius:4px;background:#000;aspect-ratio:16/9;object-fit:cover}
+.video-label{font-size:.7rem;color:#999;text-align:center;margin-top:2px}
+
+/* ===== Modeling ===== */
+.model-list{display:flex;flex-direction:column;gap:0}
+.model-item{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
+  padding:14px 4px;border-bottom:1px solid #e8e8e8;transition:background .2s
+}
+.model-item:last-child{border-bottom:none}
+.model-item:hover{background:#fff}
+.model-info h4{font-size:.9rem;font-weight:600;color:#111;margin-bottom:3px;line-height:1.4}
+.model-info .model-meta{font-size:.78rem;color:#888;margin-bottom:3px}
+.model-info .model-authors{font-size:.8rem;color:#666}
+.model-item .paper-link{
+  flex-shrink:0;font-size:.76rem;padding:3px 12px;border-radius:3px;
+  border:1px solid #1772d0;color:#1772d0;white-space:nowrap;margin-top:2px;transition:all .2s
+}
+.model-item .paper-link:hover{background:#1772d0;color:#fff;text-decoration:none}
 
 /* ===== Honors ===== */
-.honor-list{list-style:none}
-.honor-list li{
-  display:flex;align-items:baseline;gap:10px;padding:10px 0;
-  border-bottom:1px dashed #F0E0D0;font-size:.9rem
+.honor-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px}
+.honor-chip{
+  padding:9px 12px;border-radius:4px;background:#fff;border:1px solid #e8e8e8;
+  font-size:.82rem;color:#444;line-height:1.5;transition:box-shadow .2s
 }
-.honor-list li:last-child{border-bottom:none}
-.honor-list .year{
-  flex-shrink:0;font-size:.8rem;font-weight:600;color:#C4956A;min-width:60px
+.honor-chip:hover{box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.honor-chip .year{font-weight:700;color:#1772d0;font-size:.75rem;display:block;margin-bottom:1px}
+
+/* ===== Misc & Skills ===== */
+.misc-text{font-size:.9rem;color:#555;line-height:1.85}
+.interest-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.interest-tag{
+  padding:4px 12px;border-radius:3px;font-size:.8rem;
+  background:#fff;color:#555;border:1px solid #e0e0e0
+}
+.skills-wrap{display:flex;flex-wrap:wrap;gap:7px}
+.skill-tag{
+  padding:4px 12px;border-radius:3px;font-size:.8rem;
+  background:#fff;color:#444;border:1px solid #e0e0e0
 }
 
 /* ===== Modal ===== */
 .modal-overlay{
   display:none;position:fixed;inset:0;z-index:200;
-  background:rgba(0,0,0,.8);backdrop-filter:blur(4px);
-  align-items:center;justify-content:center;padding:20px
+  background:rgba(0,0,0,.85);align-items:center;justify-content:center;padding:20px
 }
 .modal-overlay.active{display:flex}
-.modal-content{
-  position:relative;max-width:800px;width:100%;border-radius:12px;overflow:hidden
-}
-.modal-content video{width:100%;display:block}
+.modal-box{position:relative;max-width:880px;width:100%;border-radius:6px;overflow:hidden;background:#111}
 .modal-close{
-  position:absolute;top:12px;right:12px;z-index:10;
-  width:36px;height:36px;border-radius:50%;
-  background:rgba(0,0,0,.5);color:#fff;border:none;
-  font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;
-  transition:background .3s
+  position:absolute;top:10px;right:10px;z-index:10;
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(255,255,255,.2);color:#fff;border:none;font-size:1rem;cursor:pointer
 }
-.modal-close:hover{background:rgba(0,0,0,.8)}
+.modal-close:hover{background:rgba(255,255,255,.35)}
+.modal-box img.modal-img{width:100%;display:block;max-height:82vh;object-fit:contain;margin:0 auto}
+.gallery-nav{display:flex;align-items:center;justify-content:center;gap:14px;padding:10px;background:#1a1a1a}
+.gallery-nav button{background:rgba(255,255,255,.15);border:none;color:#fff;width:34px;height:34px;border-radius:50%;cursor:pointer}
+.gallery-nav span{color:#aaa;font-size:.8rem}
 
-/* ===== Footer ===== */
-.footer{
-  text-align:center;padding:24px;font-size:.8rem;color:#999;border-top:1px solid #F0E0D0
+.footer{text-align:center;padding:20px;font-size:.75rem;color:#999;border-top:1px solid #e0e0e0;background:#fff}
+.top-btn{
+  position:fixed;bottom:20px;right:20px;width:38px;height:38px;
+  border-radius:50%;background:#fff;border:1px solid #ddd;color:#555;
+  font-size:.85rem;cursor:pointer;display:none;align-items:center;justify-content:center;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);z-index:50
+}
+.top-btn.show{display:flex}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(14px)}
+  to{opacity:1;transform:translateY(0)}
 }
 
-/* ===== Responsive ===== */
-@media(max-width:860px){
-  .container{grid-template-columns:1fr;gap:32px}
-  .sidebar{
-    position:static;text-align:center;
-    display:flex;flex-direction:column;align-items:center
-  }
-  .sidebar .avatar{width:100px;height:100px}
-  .sidebar .social-links{justify-content:center}
-  .sidebar .info-list li{justify-content:center}
-}
-@media(max-width:600px){
-  .navbar{padding:0 16px}
-  .nav-links{display:none;position:absolute;top:56px;left:0;right:0;
-    background:rgba(245,230,211,.98);flex-direction:column;padding:8px 16px 16px;
-    border-bottom:1px solid rgba(196,149,106,.15)}
-  .nav-links.open{display:flex}
-  .nav-links a{padding:10px 14px}
+@media(max-width:720px){
+  .profile-card{flex-direction:column;text-align:center;padding:20px}
+  .profile-avatar{width:110px;height:110px}
+  .pub-item{flex-direction:column;padding:14px 0}
+  .pub-thumb{width:100%;aspect-ratio:16/9}
+  .model-item{flex-direction:column}
   .menu-toggle{display:block}
-  .project-grid{grid-template-columns:1fr}
-  .container{padding:16px;margin-top:64px}
+  .nav-links{
+    display:none;position:absolute;top:48px;left:0;right:0;
+    background:#fff;flex-direction:column;padding:4px 0 12px;
+    border-bottom:1px solid #e0e0e0
+  }
+  .nav-links.open{display:flex}
+  .nav-links a{padding:10px 20px;border-bottom:none}
+  .profile-wrap{margin-top:-20px}
+  .video-grid{grid-template-columns:repeat(2,1fr)}
 }
-
-/* ===== Scrollbar ===== */
-::-webkit-scrollbar{width:6px}
-::-webkit-scrollbar-track{background:#FDF8F4}
-::-webkit-scrollbar-thumb{background:#E8D5C0;border-radius:4px}
-::-webkit-scrollbar-thumb:hover{background:#D4A574}
 </style>
 </head>
 <body>
 
-<!-- ===== Navigation ===== -->
 <nav class="navbar">
-  <div class="logo"><span>✦</span> 刘新慈</div>
-  <button class="menu-toggle" id="menuToggle" aria-label="菜单">☰</button>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#about">关于</a></li>
-    <li><a href="#education">教育</a></li>
-    <li><a href="#research">科研</a></li>
-    <li><a href="#projects">项目</a></li>
-    <li><a href="#skills">技能</a></li>
-    <li><a href="#honors">奖项</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#modeling">Modeling</a></li>
+    <li><a href="#honors">Honors</a></li>
+    <li><a href="#misc">Misc</a></li>
+    <li><a href="#skills">Skills</a></li>
   </ul>
+  <button class="menu-toggle" id="menuToggle" aria-label="菜单">☰</button>
 </nav>
 
-<!-- ===== Container ===== -->
-<div class="container">
+<!-- Full school banner -->
+<div class="school-banner">
+  <img src="media/hero/school.jpg" alt="华东交通大学">
+</div>
 
-  <!-- ===== Sidebar ===== -->
-  <aside class="sidebar">
-    <div class="avatar" style="background:linear-gradient(135deg,#F5E6D3,#E8D5C0);display:flex;align-items:center;justify-content:center;font-size:2.8rem;color:#C4956A">
-      ✦
+<!-- Profile card (cen-jun style) -->
+<div class="profile-wrap">
+  <div class="profile-card">
+    <div class="profile-avatar-wrap">
+      <img class="profile-avatar" src="media/profile/photo.png" alt="刘新慈">
     </div>
-    <h1>刘新慈</h1>
-    <div class="subtitle">智能建造 · 本科 · 中共预备党员</div>
-    <div class="divider"></div>
-    <ul class="info-list">
-      <li><i>📍</i> 华东交通大学</li>
-      <li><i>🎓</i> 智能建造 · GPA 4.20/5.0</li>
-      <li><i>📧</i> xinci_angel@163.com</li>
-      <li><i>📞</i> 18738741679</li>
-    </ul>
-    <div class="social-links">
-      <a href="#" title="GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58 0-.28-.01-1.04-.02-2.05-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.47 5.93.43.37.81 1.1.81 2.22 0 1.6-.01 2.89-.01 3.28 0 .32.22.7.83.58C20.56 21.8 24 17.3 24 12 24 5.37 18.63 0 12 0z"/></svg></a>
-      <a href="#" title="B站"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.813 4.653h.854c1.51.054 2.769.578 3.773 1.574 1.004.995 1.524 2.249 1.562 3.76v8.4c-.038 1.51-.558 2.765-1.562 3.761-1.004.996-2.263 1.52-3.773 1.574H5.333c-1.51-.054-2.769-.578-3.773-1.574C.556 21.152.036 19.898 0 18.387v-8.4c.036-1.511.556-2.765 1.562-3.76 1.004-.996 2.263-1.52 3.773-1.575h.774l-1.174-1.12a1.234 1.234 0 0 1-.373-.906c0-.356.124-.658.373-.907.249-.248.551-.377.907-.377.355 0 .657.129.906.377L7.24 4.653h9.52l1.147-1.12a1.26 1.26 0 0 1 .906-.377c.356 0 .658.129.907.377.249.249.373.551.373.907 0 .355-.124.657-.373.906zM5.333 7.42c-.746.027-1.373.276-1.88.747-.507.47-.76 1.1-.76 1.887v8.293c0 .787.253 1.416.76 1.887.507.47 1.134.72 1.88.747h13.334c.746-.027 1.373-.276 1.88-.747.507-.47.76-1.1.76-1.887V10.05c0-.787-.253-1.416-.76-1.887-.507-.47-1.134-.72-1.88-.747zM8.267 12.36c.32 0 .596.107.827.32.23.213.347.48.347.8v2.373c0 .32-.116.587-.347.8-.23.213-.507.32-.827.32-.32 0-.596-.107-.827-.32-.23-.213-.347-.48-.347-.8V13.48c0-.32.116-.587.347-.8.23-.213.507-.32.827-.32zm7.466 0c.32 0 .596.107.827.32.23.213.347.48.347.8v2.373c0 .32-.116.587-.347.8-.23.213-.507.32-.827.32-.32 0-.596-.107-.827-.32-.23-.213-.347-.48-.347-.8V13.48c0-.32.116-.587.347-.8.23-.213.507-.32.827-.32z"/></svg></a>
-      <a href="#" title="邮箱"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+    <div class="profile-info">
+      <h1>刘新慈 / Xinci Liu</h1>
+      <div class="affiliation">智能建造 · 本科 · 华东交通大学 · 中共预备党员</div>
+      <div class="contact">
+        xinci_angel@163.com &nbsp;·&nbsp; 18738741679 &nbsp;·&nbsp;
+        <a href="https://github.com/liuxinci" target="_blank">GitHub</a>
+      </div>
     </div>
-  </aside>
+  </div>
+</div>
 
-  <!-- ===== Main ===== -->
-  <main class="main-content">
+<div class="bio-box">
+  <p>你好！我是刘新慈，华东交通大学智能建造专业本科生，学习成绩排名 1/42（GPA 4.19/5.0）。我热衷于将人工智能与计算机技术应用于土木工程领域，探索智能建造、计算机图形学与大模型的交叉方向，希望通过科研与实践为工程建设行业的数字化与智能化转型贡献力量。</p>
+</div>
 
-    <!-- About -->
-    <section id="about" class="section">
-      <h2 class="section-title"><i>👤</i> 关于我</h2>
-      <div class="about-text">
-        <p>你好！我是刘新慈，华东交通大学智能建造专业本科生，中共预备党员，学习成绩排名 1/42。我热衷于将人工智能与计算机技术应用于土木工程领域，探索智能建造的前沿方向。通过不断地科研与实践，我希望为工程建设行业的数字化与智能化转型贡献自己的力量。</p>
-      </div>
-    </section>
+<main class="page-wrap">
 
-    <!-- Education -->
-    <section id="education" class="section">
-      <h2 class="section-title"><i>📚</i> 教育经历</h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <h3>智能建造 · 本科</h3>
-          <div class="meta">2023.09 — 2026.06 | 华东交通大学 | GPA 4.20/5.0 | 排名 1/42</div>
-          <p>主修课程：高等数学Ⅰ(95) 线性代数(98) 数据结构与算法(96) 运筹学(92) 概率论与数理统计(93) 大学物理Ⅰ(93) 程序设计基础-Python(99) 计算机图形学(97) 计算机视觉(99)</p>
-          <p style="margin-top:6px">英语能力：CET-6 (550) · CET-4 (517)</p>
+  <section id="about" class="section">
+    <h2 class="section-title">About</h2>
+    <p class="bio-box" style="padding:0;margin:0 0 16px;font-size:.9rem;color:#555">现担任班级学习委员、团支部副书记、学院辅导员及创新创业学院助理，具备良好沟通协作与执行力。</p>
+    <h3 style="font-size:.95rem;font-weight:700;color:#111;margin-bottom:8px">Education</h3>
+    <div class="edu-block">
+      <div class="school">华东交通大学</div>
+      <div class="detail">智能建造 · 本科 · 2023.09 — 2026.06</div>
+      <div class="detail">GPA 4.19/5.0 · 学习成绩排名 1/42</div>
+      <div class="detail">主修：高等数学(95) · 线性代数(98) · 数据结构与算法(96) · 运筹学(92) · 建筑力学(100) · BIM与工程制图(100) · 计算机图形学(97) · 计算机视觉(99)</div>
+      <div class="detail">英语：CET-6 (550) · CET-4 (517)</div>
+    </div>
+  </section>
+
+  <section id="projects" class="section">
+    <h2 class="section-title">Projects</h2>
+    <div class="pub-list">
+
+      <article class="pub-item">
+        <div class="pub-thumb" data-gallery="interview">
+          <img src="media/project/interview/screenshot-4.png" alt="Interview Agent">
         </div>
-      </div>
-    </section>
-
-    <!-- Research -->
-    <section id="research" class="section">
-      <h2 class="section-title"><i>🔬</i> 科研经历</h2>
-      <div class="research-grid">
-        <div class="project-card">
-          <span class="tag">进行中 · 国家级大创 · 第二负责人</span>
-          <h3>基于隐式辐射场 NeRF 的三维岩土工程场景快速重建技术</h3>
-          <p>项目立项于国家级创新创业训练计划（2024.06-至今），项目基于 NeRF 三维重建技术并结合智能建造；前期探索 NeRF 时空域增强、采样策略优化技术，提升岩土场景重建流畅度与细节精度；研究中发现 3D Gaussian Splatting 技术渲染效率更高、实时性更强，及时调整技术路线转向该技术研究，深入探究 3D Gaussian Splatting 点云稀疏化、场景重建核心算法；对比分析两个技术优劣，优化 3D Gaussian Splatting 数据适配与渲染策略。已受理国家发明专利一项。</p>
-        </div>
-
-        <div class="video-group">
-          <div class="video-group-title">Physgaussian</div>
-          <div class="video-thumbs">
-            <div class="thumb-item"><div class="video-thumb" data-src="media/physgaussian/sofa.mp4"><video src="media/physgaussian/sofa.mp4#t=0.5" preload="metadata" muted playsinline></video><div class="play-overlay"><span class="play-arrow">▶</span></div></div><div class="thumb-label">sofa</div></div>
-            <div class="thumb-item"><div class="video-thumb" data-src="media/physgaussian/sofa_softvib.mp4"><video src="media/physgaussian/sofa_softvib.mp4#t=0.5" preload="metadata" muted playsinline></video><div class="play-overlay"><span class="play-arrow">▶</span></div></div><div class="thumb-label">sofa_softvib</div></div>
-            <div class="thumb-item"><div class="video-thumb" data-src="media/physgaussian/sofa_strongvib.mp4"><video src="media/physgaussian/sofa_strongvib.mp4#t=0.5" preload="metadata" muted playsinline></video><div class="play-overlay"><span class="play-arrow">▶</span></div></div><div class="thumb-label">sofa_strongvib</div></div>
-            <div class="thumb-item"><div class="video-thumb" data-src="media/physgaussian/vasedeck.mp4"><video src="media/physgaussian/vasedeck.mp4#t=0.5" preload="metadata" muted playsinline></video><div class="play-overlay"><span class="play-arrow">▶</span></div></div><div class="thumb-label">vasedeck</div></div>
-          </div>
-        </div>
-
-                  <div class="video-group">
-              <div class="video-group-title">sketch-generative</div>
-              <div class="video-thumbs">
-            <div class="thumb-item"><div class="video-thumb" data-src="media/sketch-generative/bike.mp4"><video src="media/sketch-generative/bike.mp4#t=0.5" preload="metadata" muted playsinline></video><div class="play-overlay"><span class="play-arrow">▶</span></div></div><div class="thumb-label">bike</div></div>
-            <div class="thumb-item"><div class="video-thumb" data-src="media/sketch-generative/dolphin.mp4"><video src="media/sketch-generative/dolphin.mp4#t=0.5" preload="metadata" muted playsinline></video><div class="play-overlay"><span class="play-arrow">▶</span></div></div><div class="thumb-label">dolphin</div></div>
-            <div class="thumb-item"><div class="video-thumb" data-src="media/sketch-generative/dolphin0.mp4"><video src="media/sketch-generative/dolphin0.mp4#t=0.5" preload="metadata" muted playsinline></video><div class="play-overlay"><span class="play-arrow">▶</span></div></div><div class="thumb-label">dolphin0</div></div>
-            <div class="thumb-item"><div class="video-thumb" data-src="media/sketch-generative/sking.mp4"><video src="media/sketch-generative/sking.mp4#t=0.5" preload="metadata" muted playsinline></video><div class="play-overlay"><span class="play-arrow">▶</span></div></div><div class="thumb-label">sking</div></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects -->
-    <section id="projects" class="section">
-      <h2 class="section-title"><i>💼</i> 项目经历</h2>
-      <div class="project-grid">
-        <div class="project-card">
-          <span class="tag">进行中 · 服务外包大赛 · 项目负责人</span>
+        <div class="pub-body">
           <h3>面向高校学生的多模态模拟面试评测智能体</h3>
-          <p>项目参加第十七届中国大学生服务外包创新创业大赛（锐捷网络出题，2025.05-2026.04）。自建岗位专属题库与知识图谱，依托 SparkLLM 大模型构建 RAG 实现个性化出题与智能追问；利用多模态数据构建情绪识别与多特征融合注意力感知算法，实现面试多维度量化评估，并实现简历生成-评估-发送全流程自动化。</p>
-          <div class="card-video" data-src="media/video2.mp4">
-            <video preload="metadata" muted playsinline></video>
-            <button class="play-btn">▶</button>
-          </div>
+          <div class="pub-meta">项目负责人 · 2025.05 — 2026.04</div>
+          <span class="pub-venue award">第十七届中国大学生服务外包创新创业大赛 · 区域赛二等奖</span>
+          <p class="pub-tldr"><em>TLDR</em> 基于 Langchain 与 SparkLLM 搭建语音-视频-简历多模态面试评测智能体；自建岗位专属题库与知识图谱，RAG 实现个性化出题与智能追问；多模态情绪识别与注意力感知算法实现面试多维度量化评估。</p>
+          <div class="pub-links"><button data-gallery="interview">Gallery</button></div>
         </div>
-        <div class="project-card">
-          <span class="tag">已结束 · 中美青年创客大赛 · 项目负责人</span>
+      </article>
+
+      <article class="pub-item">
+        <div class="pub-thumb" data-gallery="fundus">
+          <img src="media/project/fundus/a46b47d9-c1df-4de3-8735-0adda24d36b4.png" alt="Fundus">
+        </div>
+        <div class="pub-body">
           <h3>基于扩散模型与注意力机制的级联眼部疾病智能诊断系统</h3>
-          <p>项目于 2024.12-2025.04 完成。采用 Diffusion Model 生成高质量病灶图像，UNet 分割眼底血管，构建 ResNet50-集成模型两阶段级联架构实现七分类识别，加入 SE 注意力与 Spatial 注意力优化。获中美青年创客大赛国家三等奖，授权一项软件著作权。</p>
-          <div class="card-video" data-src="media/video3.mp4">
-            <video preload="metadata" muted playsinline></video>
-            <button class="play-btn">▶</button>
-          </div>
+          <div class="pub-meta">项目负责人 · 2024.12 — 2025.04</div>
+          <span class="pub-venue award">中国大学生计算机设计大赛 · 全国二等奖</span>
+          <p class="pub-tldr"><em>TLDR</em> Diffusion Model 生成高质量病灶图像，UNet 分割眼底血管；ResNet50-集成模型两阶段级联七分类识别，SE 与 Spatial 注意力优化特征提取。授权软件著作权一项。</p>
+          <div class="pub-links"><button data-gallery="fundus">Gallery</button></div>
         </div>
+      </article>
+
+      <article class="pub-item">
+        <div class="pub-thumb" data-gallery="bimbase">
+          <img src="media/project/bimbase/overview.png" alt="BIMBASE">
+        </div>
+        <div class="pub-body">
+          <h3>BIMBase 铁路参数化设计协同系统</h3>
+          <div class="pub-meta">核心成员 · 2025.06 — 2025.10</div>
+          <span class="pub-venue award">第十九届"挑战杯"全国大学生课外学术科技作品竞赛"揭榜挂帅"擂台赛 · 国家二等奖</span>
+          <p class="pub-tldr"><em>TLDR</em> 模拟典型山区高铁站台环境，聚焦轨道系统、站台结构、排水防护和信号设备的参数化建模；Python 接口开发，全站参数化构件 19 个，场景尺寸约 111m × 116m。</p>
+          <div class="pub-links"><button data-gallery="bimbase">Gallery</button></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="research" class="section">
+    <h2 class="section-title">Research</h2>
+    <article class="pub-item" style="border-bottom:none;padding-bottom:0">
+      <div class="pub-body">
+        <h3>基于隐式辐射场 NeRF 的三维岩土工程场景快速重建技术</h3>
+        <div class="pub-meta">国家级大创 · 第二负责人 · 2024.06 — 2025.10</div>
+        <span class="pub-venue">国家级大学生创新创业训练计划</span>
+        <p class="pub-tldr"><em>TLDR</em> 围绕三维隐式重建，前期探索 NeRF 时空域建模与采样策略；迭代转向 3D Gaussian Splatting，研究点云稀疏化与场景重建核心算法；结合专业力学与工程背景完成方案设计，国家发明专利已受理。</p>
       </div>
-    </section>
+    </article>
 
-    <!-- Skills -->
-    <section id="skills" class="section">
-      <h2 class="section-title"><i>🛠</i> 个人技能</h2>
-      <div class="skills-wrap">
-        <span class="skill-tag">Python</span>
-        <span class="skill-tag">Taichi</span>
-        <span class="skill-tag">C++</span>
-        <span class="skill-tag">SQL</span>
-        <span class="skill-tag">PyTorch</span>
-        <span class="skill-tag">Revit</span>
-        <span class="skill-tag">AutoCAD</span>
-        <span class="skill-tag">PyCharm</span>
-        <span class="skill-tag">VS Code</span>
-        <span class="skill-tag">Git</span>
-        <span class="skill-tag">计算机二级(Python)</span>
-        <span class="skill-tag">CET-6</span>
+    <div class="research-videos">
+      <h4>3D Gaussian Splatting</h4>
+      <div class="video-grid">
+        <div><video src="media/research/3dgs/car.mp4" autoplay muted loop playsinline preload="auto"></video><div class="video-label">car</div></div>
+        <div><video src="media/research/3dgs/train.mp4" autoplay muted loop playsinline preload="auto"></video><div class="video-label">train</div></div>
       </div>
-    </section>
+      <h4>PhysGaussian</h4>
+      <div class="video-grid">
+        <div><video src="media/research/physgaussian/sofa.mp4" autoplay muted loop playsinline preload="auto"></video><div class="video-label">sofa</div></div>
+        <div><video src="media/research/physgaussian/sofa_softvib.mp4" autoplay muted loop playsinline preload="auto"></video><div class="video-label">sofa_softvib</div></div>
+        <div><video src="media/research/physgaussian/sofa_strongvib.mp4" autoplay muted loop playsinline preload="auto"></video><div class="video-label">sofa_strongvib</div></div>
+        <div><video src="media/research/physgaussian/vasedeck.mp4" autoplay muted loop playsinline preload="auto"></video><div class="video-label">vasedeck</div></div>
+      </div>
+      <h4>Sketch-Generative</h4>
+      <div class="video-grid">
+        <div><video src="media/research/sketch-generative/bike.mp4" autoplay muted loop playsinline preload="auto"></video><div class="video-label">bike</div></div>
+        <div><video src="media/research/sketch-generative/dolphin.mp4" autoplay muted loop playsinline preload="auto"></video><div class="video-label">dolphin</div></div>
+        <div><video src="media/research/sketch-generative/dolphin0.mp4" autoplay muted loop playsinline preload="auto"></video><div class="video-label">dolphin0</div></div>
+        <div><video src="media/research/sketch-generative/sking.mp4" autoplay muted loop playsinline preload="auto"></video><div class="video-label">sking</div></div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Honors -->
-    <section id="honors" class="section">
-      <h2 class="section-title"><i>🏆</i> 竞赛奖项</h2>
-      <ul class="honor-list">
-        <li><span class="year">2025.12</span> iCAN 大学生创新创业大赛 AI 挑战赛 全国二等奖</li>
-        <li><span class="year">2025.10</span> 第十九届"挑战杯"揭榜挂帅擂台赛 国家二等奖</li>
-        <li><span class="year">2025.09</span> 全国大学生数学建模竞赛 省级一等奖</li>
-        <li><span class="year">2025.08</span> 中国大学生计算机设计大赛 全国二等奖</li>
-        <li><span class="year">2025.07</span> 中美青年创客大赛 总决赛三等奖</li>
-        <li><span class="year">2025.05</span> 全国大学生英语竞赛 三等奖</li>
-        <li><span class="year">2025.01</span> APMCM 亚太区大学生数学建模竞赛 三等奖</li>
-        <li><span class="year">2024.12</span> 全国大学生数学竞赛 省级三等奖</li>
-        <li><span class="year">2024.08</span> 国际高校数学建模竞赛 M奖(优异奖)</li>
-      </ul>
-    </section>
+  <section id="modeling" class="section">
+    <h2 class="section-title">Mathematical Modeling</h2>
+    <div class="model-list">
+      <div class="model-item">
+        <div class="model-info">
+          <h4>基于启发式算法的烟幕干扰弹投放策略优化模型</h4>
+          <div class="model-meta">2025.09 · 全国大学生数学建模竞赛 · 省级一等奖</div>
+          <div class="model-authors"><span class="me">刘新慈</span> · 刘俊毅 · 石国亮</div>
+        </div>
+        <a class="paper-link" href="media/papers/cumcm-smoke.pdf" target="_blank">Paper</a>
+      </div>
+      <div class="model-item">
+        <div class="model-info">
+          <h4>The Development of the Pet Industry Based on ARIMA</h4>
+          <div class="model-meta">2025.01 · APMCM 亚太区大学生数学建模竞赛 · 三等奖</div>
+          <div class="model-authors"><span class="me">Xinci Liu</span> · Qian Ma · Kaiwen Xiao</div>
+        </div>
+        <a class="paper-link" href="media/papers/apmc-pet-industry.pdf" target="_blank">Paper</a>
+      </div>
+      <div class="model-item">
+        <div class="model-info">
+          <h4>Spacecraft Migration Initiative</h4>
+          <div class="model-meta">2024.08 · 国际高校数学建模竞赛 · M 奖（优异奖）</div>
+          <div class="model-authors">Zhixian Xu · XinGao · <span class="me">Xinci Liu</span></div>
+        </div>
+        <a class="paper-link" href="media/papers/icm-spacecraft.pdf" target="_blank">Paper</a>
+      </div>
+      <div class="model-item">
+        <div class="model-info">
+          <h4>基于多目标规划的景点游览线路</h4>
+          <div class="model-meta">2024.08 · 华数杯全国大学生数学建模竞赛 · 三等奖</div>
+          <div class="model-authors"><span class="me">刘新慈</span> · 高薪 · 徐泽民</div>
+        </div>
+        <a class="paper-link" href="media/papers/huashu-scenic-route.pdf" target="_blank">Paper</a>
+      </div>
+    </div>
+  </section>
 
-    <!-- School Honors -->
-    <section id="school-honors" class="section">
-      <h2 class="section-title"><i>🎖</i> 校级荣誉</h2>
-      <ul class="honor-list">
-        <li><span class="year">2026.05</span> 华东交通大学泰豪之星"十佳大学生"提名奖</li>
-        <li><span class="year">2025.12</span> 华东交通大学优秀学生"一等奖学金"</li>
-        <li><span class="year">2025.12</span> 华东交通大学"三好学生"</li>
-      </ul>
-    </section>
+  <section id="honors" class="section">
+    <h2 class="section-title">Honors &amp; Awards</h2>
+    <div class="honor-grid">
+      <div class="honor-chip"><span class="year">2025.12</span>iCAN 大学生创新创业大赛 AI 挑战赛 · 全国二等奖</div>
+      <div class="honor-chip"><span class="year">2025.10</span>第十九届"挑战杯"揭榜挂帅擂台赛 · 国家二等奖</div>
+      <div class="honor-chip"><span class="year">2025.09</span>全国大学生数学建模竞赛 · 省级一等奖</div>
+      <div class="honor-chip"><span class="year">2025.08</span>中国大学生计算机设计大赛 · 全国二等奖</div>
+      <div class="honor-chip"><span class="year">2025.07</span>中美青年创客大赛 · 总决赛三等奖</div>
+      <div class="honor-chip"><span class="year">2025.05</span>全国大学生英语竞赛 · 三等奖</div>
+      <div class="honor-chip"><span class="year">2025.01</span>APMCM 亚太区大学生数学建模竞赛 · 三等奖</div>
+      <div class="honor-chip"><span class="year">2024.12</span>全国大学生数学竞赛 · 省级三等奖</div>
+      <div class="honor-chip"><span class="year">2024.08</span>国际高校数学建模竞赛 · M 奖（优异奖）</div>
+      <div class="honor-chip"><span class="year">2024.08</span>华数杯全国大学生数学建模竞赛 · 三等奖</div>
+      <div class="honor-chip"><span class="year">2026.05</span>华东交通大学泰豪之星"十佳大学生" · 提名奖</div>
+      <div class="honor-chip"><span class="year">2025.12</span>华东交通大学 · 一等奖学金 · 三好学生</div>
+    </div>
+  </section>
 
-    <!-- IP -->
-    <section id="ip" class="section">
-      <h2 class="section-title"><i>📄</i> 知识产权</h2>
-      <ul class="honor-list">
-        <li><span class="year">2025.11</span> 授权软件著作权 — 基于 YOLO11 的无人机公路巡检系统</li>
-        <li><span class="year">2025.07</span> 受理国家发明专利 — 一种基坑监测方法及系统</li>
-        <li><span class="year">2025.07</span> 授权软件著作权 — 基于扩散模型与集成学习的注意力级联眼科智能诊断系统</li>
-        <li><span class="year">2025.07</span> 授权软件著作权 — 基于梯度提升的随机森林降维与预测欺诈系统</li>
-        <li><span class="year">2025.02</span> 授权软件著作权 — 基坑风险智能评估预警系统</li>
-      </ul>
-    </section>
+  <section id="misc" class="section">
+    <h2 class="section-title">Miscellaneous</h2>
+    <p class="misc-text">我喜欢探索新事物，享受在未知领域学习的过程。闲暇时爱听各类音乐、看电影，也是羽毛球的忠实爱好者。</p>
+    <div class="interest-tags">
+      <span class="interest-tag">探索新事物</span>
+      <span class="interest-tag">音乐</span>
+      <span class="interest-tag">电影</span>
+      <span class="interest-tag">羽毛球</span>
+    </div>
+  </section>
 
-  </main>
-</div>
+  <section id="skills" class="section">
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-wrap">
+      <span class="skill-tag">Python</span>
+      <span class="skill-tag">Taichi</span>
+      <span class="skill-tag">C / C++</span>
+      <span class="skill-tag">SQL</span>
+      <span class="skill-tag">PyTorch</span>
+      <span class="skill-tag">TensorFlow</span>
+      <span class="skill-tag">Revit</span>
+      <span class="skill-tag">AutoCAD</span>
+      <span class="skill-tag">PyCharm</span>
+      <span class="skill-tag">VS Code</span>
+      <span class="skill-tag">Git</span>
+      <span class="skill-tag">CET-6 (550)</span>
+      <span class="skill-tag">计算机二级 (Python)</span>
+    </div>
+  </section>
 
-<!-- ===== Footer ===== -->
-<div class="footer">
-  &copy; 2026 刘新慈. All rights reserved.
-</div>
+</main>
 
-<!-- ===== Video Modal ===== -->
-<div class="modal-overlay" id="videoModal">
-  <div class="modal-content">
+<footer class="footer">
+  &copy; 2026 刘新慈 / Xinci Liu. Style inspired by <a href="https://zqyuan.com/" target="_blank">Zeqing Yuan</a>.
+</footer>
+
+<button class="top-btn" id="topBtn" title="回到顶部">↑</button>
+
+<div class="modal-overlay" id="galleryModal">
+  <div class="modal-box">
     <button class="modal-close" id="modalClose">✕</button>
-    <video id="modalVideo" controls preload="metadata" style="display:none"></video>
-    <img id="modalImage" style="display:none;width:100%">
+    <img class="modal-img" id="modalImg" alt="">
+    <div class="gallery-nav">
+      <button id="galleryPrev">‹</button>
+      <span id="galleryCounter">1 / 1</span>
+      <button id="galleryNext">›</button>
+    </div>
   </div>
 </div>
 
 <script>
-// ===== Mobile Menu Toggle =====
-const menuToggle = document.getElementById('menuToggle');
-const navLinks = document.getElementById('navLinks');
-menuToggle.addEventListener('click', () => {
-  navLinks.classList.toggle('open');
-});
-// Close menu on link click
-navLinks.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => navLinks.classList.remove('open'));
-});
+const galleries = {
+  interview: [
+    'media/project/interview/screenshot-1.png',
+    'media/project/interview/screenshot-2.png',
+    'media/project/interview/screenshot-3.png',
+    'media/project/interview/screenshot-4.png'
+  ],
+  bimbase: [
+    'media/project/bimbase/overview.png',
+    'media/project/bimbase/truss.png',
+    'media/project/bimbase/platform.png'
+  ],
+  fundus: [
+    'media/project/fundus/a46b47d9-c1df-4de3-8735-0adda24d36b4.png',
+    'media/project/fundus/2df89afd-601b-41ff-b0e8-09f6648bf7d3.png',
+    'media/project/fundus/4456f3d8-1612-42aa-97e9-b00fefd2c5dd.png'
+  ]
+};
 
-// ===== Scroll Reveal =====
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.1 });
-document.querySelectorAll('.section').forEach(s => observer.observe(s));
+let currentGallery = [], currentIndex = 0;
+const modal = document.getElementById('galleryModal');
+const modalImg = document.getElementById('modalImg');
 
-// ===== Video Modal =====
-const modal = document.getElementById('videoModal');
-const modalVideo = document.getElementById('modalVideo');
-const modalImage = document.getElementById('modalImage');
-const modalClose = document.getElementById('modalClose');
-const videoItems = document.querySelectorAll('.card-video, .video-thumb');
-
-videoItems.forEach(item => {
-  item.addEventListener('click', () => {
-    const src = item.dataset.src;
-    const isImage = item.classList.contains('is-image');
-    modalVideo.style.display = isImage ? 'none' : 'block';
-    modalImage.style.display = isImage ? 'block' : 'none';
-    if (isImage) {
-      modalImage.src = src;
-    } else {
-      modalVideo.src = src;
-      modalVideo.play().catch(() => {});
-    }
-    modal.classList.add('active');
-  });
-});
-
-function closeModal() {
-  modal.classList.remove('active');
-  modalVideo.pause();
-  modalVideo.src = '';
-  modalImage.src = '';
+function openGallery(name, startIdx = 0) {
+  currentGallery = galleries[name] || [];
+  currentIndex = startIdx;
+  modalImg.src = currentGallery[currentIndex];
+  document.getElementById('galleryCounter').textContent = `${currentIndex + 1} / ${currentGallery.length}`;
+  modal.classList.add('active');
 }
 
-modalClose.addEventListener('click', closeModal);
-modal.addEventListener('click', (e) => {
-  if (e.target === modal) closeModal();
+document.querySelectorAll('[data-gallery]').forEach(el => {
+  el.addEventListener('click', () => {
+    const name = el.dataset.gallery;
+    let idx = 0;
+    if (el.tagName === 'IMG') {
+      idx = Math.max(0, (galleries[name] || []).indexOf(el.getAttribute('src')));
+    }
+    openGallery(name, idx);
+  });
 });
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeModal();
-});
-</script>
 
+document.getElementById('galleryPrev').addEventListener('click', e => {
+  e.stopPropagation();
+  currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
+  modalImg.src = currentGallery[currentIndex];
+  document.getElementById('galleryCounter').textContent = `${currentIndex + 1} / ${currentGallery.length}`;
+});
+document.getElementById('galleryNext').addEventListener('click', e => {
+  e.stopPropagation();
+  currentIndex = (currentIndex + 1) % currentGallery.length;
+  modalImg.src = currentGallery[currentIndex];
+  document.getElementById('galleryCounter').textContent = `${currentIndex + 1} / ${currentGallery.length}`;
+});
+document.getElementById('modalClose').addEventListener('click', () => { modal.classList.remove('active'); modalImg.src = ''; });
+modal.addEventListener('click', e => { if (e.target === modal) { modal.classList.remove('active'); modalImg.src = ''; } });
+document.addEventListener('keydown', e => {
+  if (!modal.classList.contains('active')) return;
+  if (e.key === 'Escape') { modal.classList.remove('active'); modalImg.src = ''; }
+  if (e.key === 'ArrowLeft') document.getElementById('galleryPrev').click();
+  if (e.key === 'ArrowRight') document.getElementById('galleryNext').click();
+});
+
+document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.06 });
+document.querySelectorAll('.section').forEach(s => observer.observe(s));
+
+const topBtn = document.getElementById('topBtn');
+window.addEventListener('scroll', () => topBtn.classList.toggle('show', window.scrollY > 400));
+topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+const videoObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.play().catch(() => {}); else e.target.pause(); });
+}, { threshold: 0.25 });
+document.querySelectorAll('.video-grid video').forEach(v => videoObserver.observe(v));
+</script>
 </body>
 </html>
