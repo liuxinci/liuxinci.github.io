@@ -8,11 +8,12 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;font-size:16px}
 body{
+  --page-bg:#f4f2ea;--card-bg:#fbfaf4;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans SC",sans-serif;
-  background:#f7f7f7;color:#333;line-height:1.75
+  background:var(--page-bg);color:#111;line-height:1.75;font-weight:300
 }
-a{color:#1772d0;text-decoration:none;transition:color .2s}
-a:hover{color:#0d5aa7;text-decoration:underline}
+a{color:#750014;text-decoration:none;transition:color .2s}
+a:hover{color:#a31f34;text-decoration:underline}
 img{max-width:100%;display:block}
 ::selection{background:#cce4ff;color:#003d7a}
 .me{font-weight:700;color:#111}
@@ -29,44 +30,51 @@ img{max-width:100%;display:block}
   display:block;padding:14px 16px;font-size:.875rem;font-weight:600;
   color:#555;white-space:nowrap;transition:color .2s;border-bottom:2px solid transparent
 }
-.nav-links a:hover{color:#1772d0;border-bottom-color:#1772d0;text-decoration:none}
+.nav-links a:hover{color:#750014;border-bottom-color:#750014;text-decoration:none}
 .menu-toggle{display:none;background:none;border:none;font-size:1.3rem;color:#333;cursor:pointer;position:absolute;right:16px;top:10px}
 
-/* ===== School banner — full image ===== */
-.school-banner{
-  margin-top:48px;width:100%;background:#e8edf3;
-  display:flex;justify-content:center
+/* ===== Profile cover (cen-jun style) ===== */
+#profile-cover{
+  margin-top:48px;position:relative;width:100%;height:300px;
+  background:url('media/hero/school.jpg') center 35%/cover no-repeat;
+  display:flex;align-items:center;justify-content:center;padding:0 20px
 }
-.school-banner img{width:100%;max-width:1200px;height:auto;display:block}
-
-/* ===== Profile (cen-jun style) ===== */
-.profile-wrap{
-  max-width:900px;margin:-36px auto 0;padding:0 20px 28px;position:relative;z-index:2
+#profile-cover::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(0,0,0,.12) 0%,rgba(244,242,234,.55) 55%,rgba(244,242,234,.92) 100%);
+  pointer-events:none
 }
-.profile-card{
-  display:flex;align-items:center;gap:24px;
-  background:#fff;border:1px solid #e8e8e8;border-radius:6px;
-  padding:22px 28px;box-shadow:0 2px 12px rgba(0,0,0,.07);
-  animation:fadeUp .6s ease both
+.profile-wrapper{
+  position:relative;z-index:1;width:680px;max-width:100%;
+  border-radius:25px;padding:20px 24px;box-sizing:border-box;
+  animation:fadeUp .65s ease both
 }
-.profile-avatar-wrap{flex-shrink:0}
-.profile-avatar{
-  width:130px;height:130px;border-radius:6px;object-fit:cover;
-  border:3px solid #eee;background:#f5f5f5
+.profile-wrapper::after{content:'';display:table;clear:both}
+.wrapper-light{
+  background:rgba(255,255,255,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  box-shadow:0 6px 24px rgba(43,24,16,.12);border:1px solid rgba(255,255,255,.65)
 }
-.profile-info h1{font-size:1.5rem;font-weight:700;color:#111;margin-bottom:2px}
-.profile-info .affiliation{font-size:.95rem;color:#555;font-weight:500;margin-bottom:6px}
-.profile-info .contact{font-size:.85rem;color:#777;line-height:1.6}
-.profile-info .contact a{color:#1772d0}
-
-.bio-box{
-  max-width:900px;margin:20px auto 0;padding:0 20px 32px;
-  animation:fadeUp .6s .15s ease both
+.profile-col{float:left;text-align:center;margin:10px 0}
+.profile-col-1{width:35%}
+.profile-col-2{width:65%;text-align:left;padding:16px 0 0 18px}
+#profile-avatar{
+  width:168px;height:168px;border-radius:50%;object-fit:cover;
+  border:4px solid #292929;display:block;margin:0 auto;background:#f0f0f0
 }
-.bio-box p{font-size:.92rem;color:#444;line-height:1.85}
+.text-grey-dark{font-size:1.55rem;font-weight:400;color:#111;line-height:1.35}
+.text-grey{font-size:1rem;color:#828282;margin-top:6px;line-height:1.5}
+.text-grey-light{font-size:.9rem;color:#999;margin-top:5px}
+.social-media{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
+.social-media a{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.06);
+  color:#555;font-size:.85rem;transition:all .2s;text-decoration:none
+}
+.social-media a:hover{background:rgba(117,0,20,.1);color:#750014;transform:scale(1.08);text-decoration:none}
 
 /* ===== Main layout ===== */
-.page-wrap{max-width:900px;margin:0 auto;padding:0 20px 60px}
+.page-wrap{max-width:964px;margin:0 auto;padding:28px 20px 60px}
+.about-intro{font-size:.92rem;color:#444;line-height:1.85;margin-bottom:14px}
 
 .section{margin-bottom:44px;opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
 .section.visible{opacity:1;transform:translateY(0)}
@@ -88,7 +96,7 @@ img{max-width:100%;display:block}
   transition:background .25s ease,transform .25s ease
 }
 .pub-item:last-child{border-bottom:none}
-.pub-item:hover{background:#fff;transform:translateX(3px)}
+.pub-item:hover{background:var(--card-bg);transform:translateX(3px);box-shadow:0 4px 16px rgba(43,24,16,.06)}
 .pub-thumb{
   flex-shrink:0;width:160px;border-radius:4px;overflow:hidden;
   background:#eee;cursor:pointer;aspect-ratio:16/10;align-self:flex-start;
@@ -139,9 +147,9 @@ img{max-width:100%;display:block}
 .model-info .model-authors{font-size:.8rem;color:#666}
 .model-item .paper-link{
   flex-shrink:0;font-size:.76rem;padding:3px 12px;border-radius:3px;
-  border:1px solid #1772d0;color:#1772d0;white-space:nowrap;margin-top:2px;transition:all .2s
+  border:1px solid #750014;color:#750014;white-space:nowrap;margin-top:2px;transition:all .2s
 }
-.model-item .paper-link:hover{background:#1772d0;color:#fff;text-decoration:none}
+.model-item .paper-link:hover{background:#750014;color:#fff;text-decoration:none}
 
 /* ===== Honors ===== */
 .honor-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px}
@@ -150,7 +158,7 @@ img{max-width:100%;display:block}
   font-size:.82rem;color:#444;line-height:1.5;transition:box-shadow .2s
 }
 .honor-chip:hover{box-shadow:0 2px 8px rgba(0,0,0,.05)}
-.honor-chip .year{font-weight:700;color:#1772d0;font-size:.75rem;display:block;margin-bottom:1px}
+.honor-chip .year{font-weight:700;color:#750014;font-size:.75rem;display:block;margin-bottom:1px}
 
 /* ===== Misc & Skills ===== */
 .misc-text{font-size:.9rem;color:#555;line-height:1.85}
@@ -198,8 +206,12 @@ img{max-width:100%;display:block}
 }
 
 @media(max-width:720px){
-  .profile-card{flex-direction:column;text-align:center;padding:20px}
-  .profile-avatar{width:110px;height:110px}
+  #profile-cover{height:380px;padding:0 12px}
+  .profile-col{float:none;width:100%!important;padding:0!important;text-align:center}
+  .profile-col-2{padding-top:8px!important}
+  #profile-avatar{width:130px;height:130px}
+  .text-grey-dark{font-size:1.3rem}
+  .social-media{justify-content:center}
   .pub-item{flex-direction:column;padding:14px 0}
   .pub-thumb{width:100%;aspect-ratio:16/9}
   .model-item{flex-direction:column}
@@ -211,7 +223,6 @@ img{max-width:100%;display:block}
   }
   .nav-links.open{display:flex}
   .nav-links a{padding:10px 20px;border-bottom:none}
-  .profile-wrap{margin-top:-20px}
   .video-grid{grid-template-columns:repeat(2,1fr)}
 }
 </style>
@@ -231,38 +242,31 @@ img{max-width:100%;display:block}
   <button class="menu-toggle" id="menuToggle" aria-label="菜单">☰</button>
 </nav>
 
-<!-- Full school banner -->
-<div class="school-banner">
-  <img src="media/hero/school.jpg" alt="华东交通大学">
-</div>
-
-<!-- Profile card (cen-jun style) -->
-<div class="profile-wrap">
-  <div class="profile-card">
-    <div class="profile-avatar-wrap">
-      <img class="profile-avatar" src="media/profile/photo.png" alt="刘新慈">
+<!-- Profile cover + namecard (cen-jun style) -->
+<div id="profile-cover" class="cover shallow-bg">
+  <div id="profile-namecard" class="profile-wrapper wrapper-light">
+    <div id="my-pic" class="profile-col profile-col-1">
+      <img id="profile-avatar" src="media/profile/photo.png" alt="刘新慈">
     </div>
-    <div class="profile-info">
-      <h1>刘新慈 / Xinci Liu</h1>
-      <div class="affiliation">智能建造 · 本科 · 华东交通大学 · 中共预备党员</div>
-      <div class="contact">
-        xinci_angel@163.com &nbsp;·&nbsp; 18738741679 &nbsp;·&nbsp;
-        <a href="https://github.com/liuxinci" target="_blank">GitHub</a>
+    <div id="my-contact" class="profile-col profile-col-2">
+      <div id="my-name" class="text-grey-dark">刘新慈 / Xinci Liu</div>
+      <div id="my-title" class="text-grey">华东交通大学 · 智能建造 · 本科 · 中共预备党员</div>
+      <div id="my-email" class="text-grey-light">xinci_angel@163.com · 18738741679</div>
+      <div class="social-media">
+        <a href="mailto:xinci_angel@163.com" title="Email">✉</a>
+        <a href="https://github.com/liuxinci" target="_blank" title="GitHub">GH</a>
       </div>
     </div>
   </div>
-</div>
-
-<div class="bio-box">
-  <p>你好！我是刘新慈，华东交通大学智能建造专业本科生，学习成绩排名 1/42（GPA 4.19/5.0）。我热衷于将人工智能与计算机技术应用于土木工程领域，探索智能建造、计算机图形学与大模型的交叉方向，希望通过科研与实践为工程建设行业的数字化与智能化转型贡献力量。</p>
 </div>
 
 <main class="page-wrap">
 
   <section id="about" class="section">
     <h2 class="section-title">About</h2>
-    <p class="bio-box" style="padding:0;margin:0 0 16px;font-size:.9rem;color:#555">现担任班级学习委员、团支部副书记、学院辅导员及创新创业学院助理，具备良好沟通协作与执行力。</p>
-    <h3 style="font-size:.95rem;font-weight:700;color:#111;margin-bottom:8px">Education</h3>
+    <p class="about-intro">你好！我是刘新慈，华东交通大学智能建造专业本科生，学习成绩排名 1/42（GPA 4.19/5.0）。我热衷于将人工智能与计算机技术应用于土木工程领域，探索智能建造、计算机图形学与大模型的交叉方向，希望通过科研与实践为工程建设行业的数字化与智能化转型贡献力量。</p>
+    <p class="about-intro">现担任班级学习委员、团支部副书记、学院辅导员及创新创业学院助理，具备良好沟通协作与执行力。</p>
+    <h3 style="font-size:.95rem;font-weight:700;color:#111;margin:18px 0 8px">Education</h3>
     <div class="edu-block">
       <div class="school">华东交通大学</div>
       <div class="detail">智能建造 · 本科 · 2023.09 — 2026.06</div>
