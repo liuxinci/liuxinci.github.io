@@ -35,13 +35,22 @@ img{max-width:100%;display:block}
 
 /* ===== Profile cover (cen-jun style) ===== */
 #profile-cover{
-  margin-top:48px;position:relative;width:100%;height:300px;
-  background:url('media/hero/school.jpg') center top/cover no-repeat;
-  display:flex;align-items:center;justify-content:center;padding:0 20px
+  margin-top:48px;position:relative;width:100%;height:320px;
+  background:url('media/hero/school.png') center top/cover no-repeat;
+  display:flex;align-items:center;justify-content:center;padding:0 20px 48px
 }
 #profile-cover::before{
   content:'';position:absolute;inset:0;
-  background:linear-gradient(to bottom,rgba(0,0,0,.12) 0%,rgba(244,242,234,.55) 55%,rgba(244,242,234,.92) 100%);
+  background:linear-gradient(to bottom,
+    rgba(0,0,0,.06) 0%,
+    rgba(244,242,234,0) 35%,
+    rgba(244,242,234,.45) 70%,
+    rgba(244,242,234,.95) 100%);
+  pointer-events:none
+}
+#profile-cover::after{
+  content:'';position:absolute;left:0;right:0;bottom:0;height:72px;
+  background:linear-gradient(to bottom,transparent,var(--page-bg));
   pointer-events:none
 }
 .profile-wrapper{
@@ -51,8 +60,8 @@ img{max-width:100%;display:block}
 }
 .profile-wrapper::after{content:'';display:table;clear:both}
 .wrapper-light{
-  background:rgba(255,255,255,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-  box-shadow:0 6px 24px rgba(43,24,16,.12);border:1px solid rgba(255,255,255,.65)
+  background:rgba(255,255,255,.58);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  box-shadow:0 6px 24px rgba(43,24,16,.1);border:1px solid rgba(255,255,255,.42)
 }
 .profile-col{float:left;text-align:center;margin:10px 0}
 .profile-col-1{width:35%}
@@ -74,7 +83,7 @@ img{max-width:100%;display:block}
 .social-media a:hover{background:rgba(117,0,20,.1);color:#750014;transform:scale(1.08);text-decoration:none}
 
 /* ===== Main layout ===== */
-.page-wrap{max-width:964px;margin:0 auto;padding:28px 20px 60px}
+.page-wrap{max-width:964px;margin:0 auto;padding:8px 20px 60px}
 .about-intro{font-size:.92rem;color:#444;line-height:1.85;margin-bottom:14px}
 
 .section{margin-bottom:44px;opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
@@ -207,7 +216,7 @@ img{max-width:100%;display:block}
 }
 
 @media(max-width:720px){
-  #profile-cover{height:380px;padding:0 12px}
+  #profile-cover{height:400px;padding:0 12px 40px}
   .profile-col{float:none;width:100%!important;padding:0!important;text-align:center}
   .profile-col-2{padding-top:8px!important}
   #profile-avatar{width:130px;height:130px}
