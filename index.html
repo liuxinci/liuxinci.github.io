@@ -140,10 +140,23 @@ img{max-width:100%;display:block}
 .research-videos{margin-top:14px}
 .research-videos h4{font-size:.82rem;font-weight:600;color:#777;margin:12px 0 7px;text-transform:uppercase;letter-spacing:.03em}
 .video-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px}
-.video-grid video,.render-grid img{width:100%;border-radius:4px;background:#000;aspect-ratio:16/9;object-fit:cover}
+.media-cell{position:relative;cursor:pointer;border-radius:4px;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.media-cell:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.12)}
+.media-cell video,.render-grid img{width:100%;border-radius:4px;background:#000;aspect-ratio:16/9;object-fit:cover;display:block;pointer-events:none}
+.media-cell .play-badge{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.08);transition:background .2s;pointer-events:none
+}
+.media-cell:hover .play-badge{background:rgba(0,0,0,.18)}
+.media-cell .play-badge span{
+  width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.82);
+  color:#333;font-size:1rem;display:flex;align-items:center;justify-content:center;padding-left:3px
+}
 .render-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;margin-top:4px}
-.render-grid img{background:#eee;object-fit:contain}
-.video-label{font-size:.7rem;color:#999;text-align:center;margin-top:2px}
+.render-grid .media-cell img{background:#eee;object-fit:contain;pointer-events:none}
+.research-subsection{margin-bottom:6px}
+.research-subsection h4{margin-top:16px}
+.video-label{font-size:.7rem;color:#999;text-align:center;margin-top:3px}
 .research-summary{
   margin-top:18px;padding:16px 18px;background:var(--card-bg);
   border:1px solid #e8e8e8;border-radius:8px;font-size:.88rem;color:#555;line-height:1.75
@@ -202,7 +215,8 @@ img{max-width:100%;display:block}
   background:rgba(255,255,255,.2);color:#fff;border:none;font-size:1rem;cursor:pointer
 }
 .modal-close:hover{background:rgba(255,255,255,.35)}
-.modal-box img.modal-img{width:100%;display:block;max-height:82vh;object-fit:contain;margin:0 auto}
+.modal-box img.modal-img,.modal-box video.modal-video{width:100%;display:block;max-height:82vh;object-fit:contain;margin:0 auto;background:#000}
+.modal-caption{text-align:center;color:#aaa;font-size:.82rem;padding:8px 12px 12px;background:#1a1a1a}
 .gallery-nav{display:flex;align-items:center;justify-content:center;gap:14px;padding:10px;background:#1a1a1a}
 .gallery-nav button{background:rgba(255,255,255,.15);border:none;color:#fff;width:34px;height:34px;border-radius:50%;cursor:pointer}
 .gallery-nav span{color:#aaa;font-size:.8rem}
@@ -350,31 +364,94 @@ img{max-width:100%;display:block}
     </article>
 
     <div class="research-videos">
-      <h4>3D Gaussian Splatting</h4>
-      <div class="video-grid">
-        <div><video src="media/research/3dgs/car.mp4" autoplay muted loop playsinline preload="auto"></video><div class="video-label">car</div></div>
-        <div><video src="media/research/3dgs/train.mp4" autoplay muted loop playsinline preload="auto"></video><div class="video-label">train</div></div>
-        <div><video src="media/research/3dgs/3dgs7000.mp4" autoplay muted loop playsinline preload="auto"></video><div class="video-label">3DGS-interation7000</div></div>
-        <div><video src="media/research/3dgs/oblique-photography.mp4" autoplay muted loop playsinline preload="auto"></video><div class="video-label">倾斜摄影</div></div>
+      <div class="research-subsection">
+        <h4>3D Gaussian Splatting</h4>
+        <div class="video-grid">
+          <div class="media-cell" data-video="media/research/3dgs/car.mp4" data-label="car">
+            <video src="media/research/3dgs/car.mp4" autoplay muted loop playsinline preload="auto"></video>
+            <div class="play-badge"><span>▶</span></div>
+            <div class="video-label">car</div>
+          </div>
+          <div class="media-cell" data-video="media/research/3dgs/train.mp4" data-label="train">
+            <video src="media/research/3dgs/train.mp4" autoplay muted loop playsinline preload="auto"></video>
+            <div class="play-badge"><span>▶</span></div>
+            <div class="video-label">train</div>
+          </div>
+        </div>
       </div>
-      <h4>Rendering Details</h4>
-      <div class="render-grid">
-        <div><img src="media/research/3dgs/00006.png" alt="render 00006"><div class="video-label">00006</div></div>
-        <div><img src="media/research/3dgs/00250.png" alt="render 00250"><div class="video-label">00250</div></div>
+
+      <div class="research-subsection">
+        <h4>滕王阁重建</h4>
+        <div class="video-grid">
+          <div class="media-cell" data-video="media/research/3dgs/3dgs7000.mp4" data-label="3DGS-interation7000">
+            <video src="media/research/3dgs/3dgs7000.mp4" autoplay muted loop playsinline preload="auto"></video>
+            <div class="play-badge"><span>▶</span></div>
+            <div class="video-label">3DGS-interation7000</div>
+          </div>
+          <div class="media-cell" data-video="media/research/3dgs/oblique-photography.mp4" data-label="倾斜摄影">
+            <video src="media/research/3dgs/oblique-photography.mp4" autoplay muted loop playsinline preload="auto"></video>
+            <div class="play-badge"><span>▶</span></div>
+            <div class="video-label">倾斜摄影</div>
+          </div>
+        </div>
+        <h4>Rendering Details</h4>
+        <div class="render-grid">
+          <div class="media-cell" data-gallery="tengwang-renders" data-index="0">
+            <img src="media/research/3dgs/00006.png" alt="render 00006">
+            <div class="video-label">00006</div>
+          </div>
+          <div class="media-cell" data-gallery="tengwang-renders" data-index="1">
+            <img src="media/research/3dgs/00250.png" alt="render 00250">
+            <div class="video-label">00250</div>
+          </div>
+        </div>
       </div>
+
       <h4>PhysGaussian</h4>
       <div class="video-grid">
-        <div><video src="media/research/physgaussian/sofa.mp4" autoplay muted loop playsinline preload="auto"></video><div class="video-label">sofa</div></div>
-        <div><video src="media/research/physgaussian/sofa_softvib.mp4" autoplay muted loop playsinline preload="auto"></video><div class="video-label">sofa_softvib</div></div>
-        <div><video src="media/research/physgaussian/sofa_strongvib.mp4" autoplay muted loop playsinline preload="auto"></video><div class="video-label">sofa_strongvib</div></div>
-        <div><video src="media/research/physgaussian/vasedeck.mp4" autoplay muted loop playsinline preload="auto"></video><div class="video-label">vasedeck</div></div>
+        <div class="media-cell" data-video="media/research/physgaussian/sofa.mp4" data-label="sofa">
+          <video src="media/research/physgaussian/sofa.mp4" autoplay muted loop playsinline preload="auto"></video>
+          <div class="play-badge"><span>▶</span></div>
+          <div class="video-label">sofa</div>
+        </div>
+        <div class="media-cell" data-video="media/research/physgaussian/sofa_softvib.mp4" data-label="sofa_softvib">
+          <video src="media/research/physgaussian/sofa_softvib.mp4" autoplay muted loop playsinline preload="auto"></video>
+          <div class="play-badge"><span>▶</span></div>
+          <div class="video-label">sofa_softvib</div>
+        </div>
+        <div class="media-cell" data-video="media/research/physgaussian/sofa_strongvib.mp4" data-label="sofa_strongvib">
+          <video src="media/research/physgaussian/sofa_strongvib.mp4" autoplay muted loop playsinline preload="auto"></video>
+          <div class="play-badge"><span>▶</span></div>
+          <div class="video-label">sofa_strongvib</div>
+        </div>
+        <div class="media-cell" data-video="media/research/physgaussian/vasedeck.mp4" data-label="vasedeck">
+          <video src="media/research/physgaussian/vasedeck.mp4" autoplay muted loop playsinline preload="auto"></video>
+          <div class="play-badge"><span>▶</span></div>
+          <div class="video-label">vasedeck</div>
+        </div>
       </div>
       <h4>Sketch-Generative</h4>
       <div class="video-grid">
-        <div><video src="media/research/sketch-generative/bike.mp4" autoplay muted loop playsinline preload="auto"></video><div class="video-label">bike</div></div>
-        <div><video src="media/research/sketch-generative/dolphin.mp4" autoplay muted loop playsinline preload="auto"></video><div class="video-label">dolphin</div></div>
-        <div><video src="media/research/sketch-generative/dolphin0.mp4" autoplay muted loop playsinline preload="auto"></video><div class="video-label">dolphin0</div></div>
-        <div><video src="media/research/sketch-generative/sking.mp4" autoplay muted loop playsinline preload="auto"></video><div class="video-label">sking</div></div>
+        <div class="media-cell" data-video="media/research/sketch-generative/bike.mp4" data-label="bike">
+          <video src="media/research/sketch-generative/bike.mp4" autoplay muted loop playsinline preload="auto"></video>
+          <div class="play-badge"><span>▶</span></div>
+          <div class="video-label">bike</div>
+        </div>
+        <div class="media-cell" data-video="media/research/sketch-generative/dolphin.mp4" data-label="dolphin">
+          <video src="media/research/sketch-generative/dolphin.mp4" autoplay muted loop playsinline preload="auto"></video>
+          <div class="play-badge"><span>▶</span></div>
+          <div class="video-label">dolphin</div>
+        </div>
+        <div class="media-cell" data-video="media/research/sketch-generative/dolphin0.mp4" data-label="dolphin0">
+          <video src="media/research/sketch-generative/dolphin0.mp4" autoplay muted loop playsinline preload="auto"></video>
+          <div class="play-badge"><span>▶</span></div>
+          <div class="video-label">dolphin0</div>
+        </div>
+        <div class="media-cell" data-video="media/research/sketch-generative/sking.mp4" data-label="sking">
+          <video src="media/research/sketch-generative/sking.mp4" autoplay muted loop playsinline preload="auto"></video>
+          <div class="play-badge"><span>▶</span></div>
+          <div class="video-label">sking</div>
+        </div>
       </div>
       <div class="research-summary">
         <strong>个人总结：</strong>在大创实践中，我从 3D Gaussian Splatting 出发，逐步延伸到三维计算机视觉、计算机图形学与 NeRF 等相关方向，梳理了从重建、渲染到表示学习的整体认知路径。相关学习笔记与交互式总结见
@@ -480,12 +557,14 @@ img{max-width:100%;display:block}
 <div class="modal-overlay" id="galleryModal">
   <div class="modal-box">
     <button class="modal-close" id="modalClose">✕</button>
-    <img class="modal-img" id="modalImg" alt="">
-    <div class="gallery-nav">
+    <img class="modal-img" id="modalImg" alt="" style="display:none">
+    <video class="modal-video" id="modalVideo" controls playsinline style="display:none"></video>
+    <div class="gallery-nav" id="galleryNav">
       <button id="galleryPrev">‹</button>
       <span id="galleryCounter">1 / 1</span>
       <button id="galleryNext">›</button>
     </div>
+    <div class="modal-caption" id="modalCaption" style="display:none"></div>
   </div>
 </div>
 
@@ -506,30 +585,75 @@ const galleries = {
     'media/project/fundus/cover.jpg',
     'media/project/fundus/bc7100730bd568bde88b9cec07e6fe4e.jpg',
     'media/project/fundus/2df89afd-601b-41ff-b0e8-09f6648bf7d3.png'
+  ],
+  'tengwang-renders': [
+    'media/research/3dgs/00006.png',
+    'media/research/3dgs/00250.png'
   ]
 };
 
 let currentGallery = [], currentIndex = 0;
 const modal = document.getElementById('galleryModal');
 const modalImg = document.getElementById('modalImg');
+const modalVideo = document.getElementById('modalVideo');
+const modalCaption = document.getElementById('modalCaption');
+const galleryNav = document.getElementById('galleryNav');
+
+function closeModal() {
+  modal.classList.remove('active');
+  modalImg.src = '';
+  modalImg.style.display = 'none';
+  modalVideo.pause();
+  modalVideo.src = '';
+  modalVideo.style.display = 'none';
+  modalCaption.style.display = 'none';
+  galleryNav.style.display = 'flex';
+}
 
 function openGallery(name, startIdx = 0) {
   currentGallery = galleries[name] || [];
   currentIndex = startIdx;
+  modalVideo.style.display = 'none';
+  modalVideo.pause();
+  modalVideo.src = '';
+  modalImg.style.display = 'block';
+  modalCaption.style.display = 'none';
+  galleryNav.style.display = 'flex';
   modalImg.src = currentGallery[currentIndex];
   document.getElementById('galleryCounter').textContent = `${currentIndex + 1} / ${currentGallery.length}`;
   modal.classList.add('active');
 }
 
+function openVideoModal(src, label) {
+  currentGallery = [];
+  modalImg.style.display = 'none';
+  modalImg.src = '';
+  galleryNav.style.display = 'none';
+  modalVideo.style.display = 'block';
+  modalVideo.src = src;
+  modalVideo.muted = false;
+  modalVideo.loop = false;
+  modalVideo.controls = true;
+  modalCaption.textContent = label || '';
+  modalCaption.style.display = label ? 'block' : 'none';
+  modal.classList.add('active');
+  modalVideo.play().catch(() => {});
+}
+
 document.querySelectorAll('[data-gallery]').forEach(el => {
   el.addEventListener('click', () => {
     const name = el.dataset.gallery;
-    let idx = 0;
-    if (el.tagName === 'IMG') {
-      idx = Math.max(0, (galleries[name] || []).indexOf(el.getAttribute('src')));
+    let idx = Number(el.dataset.index);
+    if (Number.isNaN(idx)) {
+      const img = el.querySelector('img');
+      idx = img ? Math.max(0, (galleries[name] || []).indexOf(img.getAttribute('src'))) : 0;
     }
     openGallery(name, idx);
   });
+});
+
+document.querySelectorAll('[data-video]').forEach(el => {
+  el.addEventListener('click', () => openVideoModal(el.dataset.video, el.dataset.label));
 });
 
 document.getElementById('galleryPrev').addEventListener('click', e => {
@@ -544,13 +668,13 @@ document.getElementById('galleryNext').addEventListener('click', e => {
   modalImg.src = currentGallery[currentIndex];
   document.getElementById('galleryCounter').textContent = `${currentIndex + 1} / ${currentGallery.length}`;
 });
-document.getElementById('modalClose').addEventListener('click', () => { modal.classList.remove('active'); modalImg.src = ''; });
-modal.addEventListener('click', e => { if (e.target === modal) { modal.classList.remove('active'); modalImg.src = ''; } });
+document.getElementById('modalClose').addEventListener('click', closeModal);
+modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
 document.addEventListener('keydown', e => {
   if (!modal.classList.contains('active')) return;
-  if (e.key === 'Escape') { modal.classList.remove('active'); modalImg.src = ''; }
-  if (e.key === 'ArrowLeft') document.getElementById('galleryPrev').click();
-  if (e.key === 'ArrowRight') document.getElementById('galleryNext').click();
+  if (e.key === 'Escape') closeModal();
+  if (currentGallery.length && e.key === 'ArrowLeft') document.getElementById('galleryPrev').click();
+  if (currentGallery.length && e.key === 'ArrowRight') document.getElementById('galleryNext').click();
 });
 
 document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
@@ -568,7 +692,7 @@ topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smoo
 const videoObserver = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.play().catch(() => {}); else e.target.pause(); });
 }, { threshold: 0.25 });
-document.querySelectorAll('.video-grid video').forEach(v => videoObserver.observe(v));
+document.querySelectorAll('.media-cell video').forEach(v => videoObserver.observe(v));
 </script>
 </body>
 </html>
