@@ -140,8 +140,15 @@ img{max-width:100%;display:block}
 .research-videos{margin-top:14px}
 .research-videos h4{font-size:.82rem;font-weight:600;color:#777;margin:12px 0 7px;text-transform:uppercase;letter-spacing:.03em}
 .video-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px}
-.video-grid video{width:100%;border-radius:4px;background:#000;aspect-ratio:16/9;object-fit:cover}
+.video-grid video,.render-grid img{width:100%;border-radius:4px;background:#000;aspect-ratio:16/9;object-fit:cover}
+.render-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;margin-top:4px}
+.render-grid img{background:#eee;object-fit:contain}
 .video-label{font-size:.7rem;color:#999;text-align:center;margin-top:2px}
+.research-summary{
+  margin-top:18px;padding:16px 18px;background:var(--card-bg);
+  border:1px solid #e8e8e8;border-radius:8px;font-size:.88rem;color:#555;line-height:1.75
+}
+.research-summary a{font-weight:600}
 
 /* ===== Modeling ===== */
 .model-list{display:flex;flex-direction:column;gap:0}
@@ -304,7 +311,7 @@ img{max-width:100%;display:block}
 
       <article class="pub-item">
         <div class="pub-thumb" data-gallery="fundus">
-          <img src="media/project/fundus/a46b47d9-c1df-4de3-8735-0adda24d36b4.png" alt="Fundus">
+          <img src="media/project/fundus/cover.jpg" alt="Fundus">
         </div>
         <div class="pub-body">
           <h3>基于扩散模型与注意力机制的级联眼部疾病智能诊断系统</h3>
@@ -347,6 +354,13 @@ img{max-width:100%;display:block}
       <div class="video-grid">
         <div><video src="media/research/3dgs/car.mp4" autoplay muted loop playsinline preload="auto"></video><div class="video-label">car</div></div>
         <div><video src="media/research/3dgs/train.mp4" autoplay muted loop playsinline preload="auto"></video><div class="video-label">train</div></div>
+        <div><video src="media/research/3dgs/3dgs7000.mp4" autoplay muted loop playsinline preload="auto"></video><div class="video-label">3DGS-interation7000</div></div>
+        <div><video src="media/research/3dgs/oblique-photography.mp4" autoplay muted loop playsinline preload="auto"></video><div class="video-label">倾斜摄影</div></div>
+      </div>
+      <h4>Rendering Details</h4>
+      <div class="render-grid">
+        <div><img src="media/research/3dgs/00006.png" alt="render 00006"><div class="video-label">00006</div></div>
+        <div><img src="media/research/3dgs/00250.png" alt="render 00250"><div class="video-label">00250</div></div>
       </div>
       <h4>PhysGaussian</h4>
       <div class="video-grid">
@@ -361,6 +375,10 @@ img{max-width:100%;display:block}
         <div><video src="media/research/sketch-generative/dolphin.mp4" autoplay muted loop playsinline preload="auto"></video><div class="video-label">dolphin</div></div>
         <div><video src="media/research/sketch-generative/dolphin0.mp4" autoplay muted loop playsinline preload="auto"></video><div class="video-label">dolphin0</div></div>
         <div><video src="media/research/sketch-generative/sking.mp4" autoplay muted loop playsinline preload="auto"></video><div class="video-label">sking</div></div>
+      </div>
+      <div class="research-summary">
+        <strong>个人总结：</strong>在大创实践中，我从 3D Gaussian Splatting 出发，逐步延伸到三维计算机视觉、计算机图形学与 NeRF 等相关方向，梳理了从重建、渲染到表示学习的整体认知路径。相关学习笔记与交互式总结见
+        <a href="https://liuxinci.github.io/3D-reconlearning/" target="_blank">3DGS → 三维视觉 → 图形学 → Rendering Pipeline 交互学习</a>。
       </div>
     </div>
   </section>
@@ -485,9 +503,9 @@ const galleries = {
     'media/project/bimbase/platform.png'
   ],
   fundus: [
-    'media/project/fundus/a46b47d9-c1df-4de3-8735-0adda24d36b4.png',
-    'media/project/fundus/2df89afd-601b-41ff-b0e8-09f6648bf7d3.png',
-    'media/project/fundus/4456f3d8-1612-42aa-97e9-b00fefd2c5dd.png'
+    'media/project/fundus/cover.jpg',
+    'media/project/fundus/bc7100730bd568bde88b9cec07e6fe4e.jpg',
+    'media/project/fundus/2df89afd-601b-41ff-b0e8-09f6648bf7d3.png'
   ]
 };
 
