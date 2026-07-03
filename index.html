@@ -189,6 +189,13 @@ img{max-width:100%;display:block}
 .honor-chip:hover{box-shadow:0 2px 8px rgba(0,0,0,.05)}
 .honor-chip .year{font-weight:700;color:#750014;font-size:.75rem;display:block;margin-bottom:1px}
 
+/* ===== IP / 软著 ===== */
+.ip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:8px}
+.ip-item{cursor:pointer;border-radius:6px;overflow:hidden;border:1px solid #e8e8e8;background:#fff;transition:box-shadow .2s,transform .2s}
+.ip-item:hover{box-shadow:0 4px 14px rgba(0,0,0,.08);transform:translateY(-2px)}
+.ip-item img{width:100%;display:block;aspect-ratio:3/4;object-fit:cover;object-position:top}
+.ip-item .ip-label{font-size:.75rem;color:#666;padding:8px 10px;line-height:1.4;border-top:1px solid #f0f0f0}
+
 /* ===== Misc & Skills ===== */
 .misc-text{font-size:.9rem;color:#555;line-height:1.85}
 .interest-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
@@ -444,27 +451,22 @@ img{max-width:100%;display:block}
           <div class="video-label">vasedeck</div>
         </div>
       </div>
-      <h4>Sketch-Generative</h4>
+      <h4>Others</h4>
       <div class="video-grid">
-        <div class="media-cell" data-video="media/research/sketch-generative/bike.mp4" data-label="bike">
-          <video src="media/research/sketch-generative/bike.mp4" autoplay muted loop playsinline preload="auto"></video>
+        <div class="media-cell" data-video="media/research/taichi/Taichi_mpm.mp4" data-label="Taichi_mpm">
+          <video src="media/research/taichi/Taichi_mpm.mp4" autoplay muted loop playsinline preload="auto"></video>
+          <div class="play-badge"><span>▶</span></div>
+          <div class="video-label">Taichi_mpm</div>
+        </div>
+        <div class="media-cell" data-video="media/research/taichi/Taichi_SPH.mp4" data-label="Taichi_SPH">
+          <video src="media/research/taichi/Taichi_SPH.mp4" autoplay muted loop playsinline preload="auto"></video>
+          <div class="play-badge"><span>▶</span></div>
+          <div class="video-label">Taichi_SPH</div>
+        </div>
+        <div class="media-cell" data-video="media/research/taichi/bike.mp4" data-label="bike">
+          <video src="media/research/taichi/bike.mp4" autoplay muted loop playsinline preload="auto"></video>
           <div class="play-badge"><span>▶</span></div>
           <div class="video-label">bike</div>
-        </div>
-        <div class="media-cell" data-video="media/research/sketch-generative/dolphin.mp4" data-label="dolphin">
-          <video src="media/research/sketch-generative/dolphin.mp4" autoplay muted loop playsinline preload="auto"></video>
-          <div class="play-badge"><span>▶</span></div>
-          <div class="video-label">dolphin</div>
-        </div>
-        <div class="media-cell" data-video="media/research/sketch-generative/dolphin0.mp4" data-label="dolphin0">
-          <video src="media/research/sketch-generative/dolphin0.mp4" autoplay muted loop playsinline preload="auto"></video>
-          <div class="play-badge"><span>▶</span></div>
-          <div class="video-label">dolphin0</div>
-        </div>
-        <div class="media-cell" data-video="media/research/sketch-generative/sking.mp4" data-label="sking">
-          <video src="media/research/sketch-generative/sking.mp4" autoplay muted loop playsinline preload="auto"></video>
-          <div class="play-badge"><span>▶</span></div>
-          <div class="video-label">sking</div>
         </div>
       </div>
       <div class="research-summary">
@@ -527,6 +529,28 @@ img{max-width:100%;display:block}
       <div class="honor-chip"><span class="year">2024.08</span>华数杯全国大学生数学建模竞赛 · 三等奖</div>
       <div class="honor-chip"><span class="year">2026.05</span>华东交通大学泰豪之星"十佳大学生" · 提名奖</div>
       <div class="honor-chip"><span class="year">2025.12</span>华东交通大学 · 一等奖学金 · 三好学生</div>
+    </div>
+  </section>
+
+  <section id="ip" class="section">
+    <h2 class="section-title">Software Copyrights</h2>
+    <div class="ip-grid">
+      <div class="ip-item" data-gallery="ip-certs" data-index="0">
+        <img src="media/ip/yolo11-drone.png" alt="基于 YOLO11 的无人机公路巡检系统">
+        <div class="ip-label">基于 YOLO11 的无人机公路巡检系统</div>
+      </div>
+      <div class="ip-item" data-gallery="ip-certs" data-index="1">
+        <img src="media/ip/medical.png" alt="注意力级联眼科智能诊断系统">
+        <div class="ip-label">基于扩散模型与集成学习的注意力级联眼科智能诊断系统</div>
+      </div>
+      <div class="ip-item" data-gallery="ip-certs" data-index="2">
+        <img src="media/ip/pit-risk.png" alt="基坑风险智能评估预警系统">
+        <div class="ip-label">基坑风险智能评估预警系统</div>
+      </div>
+      <div class="ip-item" data-gallery="ip-certs" data-index="3">
+        <img src="media/ip/patent-pit.png" alt="一种基坑监测方法及系统">
+        <div class="ip-label">发明专利 · 一种基坑监测方法及系统</div>
+      </div>
     </div>
   </section>
 
@@ -607,6 +631,12 @@ const galleries = {
   'subway-pit': [
     'media/research/3dgs/3DGS.png',
     'media/research/3dgs/PDEGaussian.png'
+  ],
+  'ip-certs': [
+    'media/ip/yolo11-drone.png',
+    'media/ip/medical.png',
+    'media/ip/pit-risk.png',
+    'media/ip/patent-pit.png'
   ]
 };
 
